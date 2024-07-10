@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://Usuisio.github.io/contrococoro",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -11,11 +12,14 @@
   },
   "dependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-helmet-async": "^2.0.5",
+    "styled-components": "^6.1.11"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@types/react-helmet-async": "^1.0.3",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
     "@vitejs/plugin-react": "^4.3.1",
