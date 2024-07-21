@@ -1,6 +1,8 @@
 import React from 'react'
 import { DialogueFrame } from './DialogueFrame'
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
+import { FlagControllContainer } from './FlagControllContainer';
 
 const GameViewDiv = styled.div`
   display: flex;
@@ -14,10 +16,11 @@ const GameViewDiv = styled.div`
 `;
 
 export const GameView = ()=>{
-  return (
+  return (<>
     <GameViewDiv>
-        <DialogueFrame />
+      <FlagControllContainer />
     </GameViewDiv>
+  </>
   )
 }
 

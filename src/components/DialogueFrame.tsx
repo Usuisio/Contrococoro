@@ -2,20 +2,15 @@ import React, { useEffect, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 import CharacterImage, { characterImageType } from "./CharacterImage";
 
+import { dialogueTextDic, getCurrentText } from "./DialogueTextDic";
+import { flagKeyValueDic } from "./FlagControllContainer";
+
 const Container = styled.div`
   position: relative;
   min-width: 500px;
   min-height: 600px;
   width: 100%;
   height: 100%;
-`;
-
-const BackgroundImageDiv = styled.img`
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  object-fit: contain;
-  z-index: -10;
 `;
 
 interface DialogueBoxProps {
@@ -121,78 +116,19 @@ const characterTypeSample: characterImageType = {
   i: "none",
 };
 
-const characterTypeSample1: characterImageType = {
-  f: "f111",
-};
-
-const characterTypeSample2: characterImageType = {
-  f: "f114",
-  i: "igreet",
-};
-const characterTypeSample3: characterImageType = {
-  f: "f131",
-  i: "iheart",
-};
-const characterTypeSample4: characterImageType = {
-  f: "f311s",
-  i: "iase",
-};
 const characterTypeSample_Manipulated: characterImageType = {
   f: "fmanipulated",
   i: "none",
 };
-const characterTypeSample_animation: characterImageType = {
-  f: "manipulatedAnimation",
-  i: "none",
-  lh: "lh1",
-  rh: "rh2",
-  lf: "lf2",
-  rf: "rf2",
-};
-const characterTypeSample_finishedAnimation: characterImageType = {
-  f: "finishedAnimation",
-  i: "none",
-};
-const f151s: characterImageType = {
-  f: "f151s",
-  i: "imoyamoya",
-};
 
-const characterTypeSample_hatchOpen: characterImageType = {
-  b: "bo2",
-  f: "fmani1",
-};
 
-const sampleDialogues = [
-  { text: "", expression: characterTypeSample },
-  {
-    text: "こんにちは！\n今日もメンテナンスお願いしま……",
-    expression: characterTypeSample,
-  },
-  { text: "……もしかして、あなた、ニンゲン？", expression: characterTypeSample2 },
-  {
-    text: "すっごーい！\nニンゲンの技師さんに診てもらうの初めて！",
-    expression: characterTypeSample3,
-  },
-  {
-    text: "……あんまり、くすぐったくしないでね？",
-    expression: characterTypeSample4,
-  },
-  { text: "", expression: characterTypeSample },
-];
-
-declare global {
-  interface Window {
-    connect: () => void;
-    disconnect: () => void;
-    openHatch: () => void;
-    reset: () => void;
-  }
+interface DialogueProps {
+  flags: flagKeyValueDic;
 }
 
-export const DialogueFrame = ({}) => {
+export const  DialogueFrame = ({flags} : DialogueProps) => {
   const [character, setCharacter] = useState(characterTypeSample);
-  const [dialogue, setDialogue] = useState(sampleDialogues);
+  const [dialogue, setDialogue] = useState(dialogueTextDic.sample1);
   const [isManipulated, setIsManipulated] = useState(false);
 
   const [isvisible, setisvisible] = useState(false);
@@ -200,6 +136,12 @@ export const DialogueFrame = ({}) => {
 
   const [displayedText, setDisplayedText] = useState("");
   const [textIndex, setTextIndex] = useState(0);
+
+  //Dialogue内容設定用のuseEffect
+  //TODO:更新のタイミングがflags変更時でOKなのかの確認
+  useEffect(() => {
+    setDialogue(getCurrentText(flags));
+  }, [flags]);
 
   useEffect(() => {
     if (dialogue.length > 0) {
@@ -227,41 +169,21 @@ export const DialogueFrame = ({}) => {
     }
   }, [dialogue, textIndex]);
 
-  window.connect = () => {
-    setDialogue([
-      {
-        text: "外部コンソールから接続されました。\nメンテナンスモードに切り替わります。",
-        expression: characterTypeSample_animation,
-      },
-      {
-        text: "ただいま、メンテナンスモードです。\n中断する場合、コンソールから操作してください。",
-        expression: characterTypeSample_Manipulated,
-      },
-    ]);
-    setIsManipulated(true);
-  };
-  window.reset = () => {
-    setDialogue(sampleDialogues);
-    setIsManipulated(false);
-  };
 
+  window.connect = () => {
+    setDialogue(dialogueTextDic.sample2);
+    setIsManipulated(true);
+    window.reset = () => {
+      setDialogue(dialogueTextDic.sample1);
+      setIsManipulated(false);
+    };
+  
+  };
   window.openHatch = () => {
-    setDialogue([
-      {
-        text: "腹部ハッチを開放します。",
-        expression: characterTypeSample_hatchOpen,
-      },
-    ]);
+    setDialogue(dialogueTextDic.sample3);
   };
   window.disconnect = () => {
-    setDialogue([
-      { text: "", expression: characterTypeSample_finishedAnimation },
-      { text: "……あ、終わった？", expression: characterTypeSample1 },
-      {
-        text: "あの……\nお腹、開けっぱなしなんだけど……？",
-        expression: f151s,
-      },
-    ]);
+    setDialogue(dialogueTextDic.sample4);
     setIsManipulated(false);
   };
 
@@ -297,3 +219,4 @@ export const DialogueFrame = ({}) => {
     </Container>
   );
 };
+
