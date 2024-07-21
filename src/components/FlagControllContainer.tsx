@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DialogueFrame } from "./DialogueFrame";
 import { t } from "i18next";
+import { DocumentAccordionLayer } from "./DocumentAccordionLayer";
 
 declare global {
   interface Window {
@@ -38,6 +39,13 @@ export type flagKeyValue = {
 };
 export type flagKeyValueDic = flagKeyValue[];
 
+export type FlagNames = flagKeyValue['name'];
+
+export const getFlagValueByName = (flags: flagKeyValueDic, name: FlagNames): boolean => {
+  const foundFlag = flags.find(flag => flag.name === name);
+  return foundFlag?.flag.value ?? false;
+};
+
 export const getFlagByName = (
   flags: flagKeyValueDic,
   name: string
@@ -47,6 +55,7 @@ export const getFlagByName = (
 };
 
 export const FlagControllContainer = () => {
+  const [isFirstTalkEnd, setIsFirstTalkEnd] = useState(true);
   const [fCheck, setFCheck] = useState(false);
   const [fOpenHatch, setFOpenHatch] = useState(false);
   const [isOpenHatch, setIsOpenHatch] = useState(false);
@@ -59,6 +68,7 @@ export const FlagControllContainer = () => {
   const [fRemoveBattery, setFRemoveBattery] = useState(false);
 
   const flags: flagKeyValueDic = [
+    { name: "isFirstTalkEnd", flag: { value: isFirstTalkEnd, setter: setIsFirstTalkEnd } },
     { name: "fCheck", flag: { value: fCheck, setter: setFCheck } },
     { name: "fOpenHatch", flag: { value: fOpenHatch, setter: setFOpenHatch } },
     {
@@ -108,9 +118,12 @@ export const FlagControllContainer = () => {
 
   useEffect(() => {
     window.CHECK = () => {
+      CHECKCore();
+    };
+    const CHECKCore = () => {
       SetFlags("fCheck");
       SetFlags("isEnableDelete");
-    };
+    }
 
     window.DELETE = (target: any) => {
         // targetを文字列に変換し、大文字化
@@ -134,7 +147,7 @@ export const FlagControllContainer = () => {
 
   return (
     <>
-      <DialogueFrame flags={flags} />
+      <DocumentAccordionLayer flags={flags} />
     </>
   );
 };
