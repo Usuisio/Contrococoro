@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 import CharacterImage, { characterImageType } from "./CharacterImage";
-
-import { dialogueTextDic, getCurrentText } from "./DialogueTextDic";
+import {
+  Choice,
+  DialogueEntry,
+  dialogueTextDic,
+  getCurrentText,
+} from "./DialogueTextDic";
 import { flagKeyValueDic } from "./FlagControllContainer";
 
 const Container = styled.div`
@@ -121,24 +125,53 @@ const characterTypeSample_Manipulated: characterImageType = {
   i: "none",
 };
 
+const ChoiceContainer = styled.div`
+  position: absolute;
+  bottom: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+`;
+
+const ChoiceButton = styled.button`
+  background-color: rgba(251, 251, 251, 0.9);
+  border: 2px solid #333;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+  width: 100%;
+  max-width: 400px;
+
+  &:hover {
+    background-color: rgba(200, 200, 200, 0.9);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+`;
 
 interface DialogueProps {
   flags: flagKeyValueDic;
 }
 
-export const  DialogueFrame = ({flags} : DialogueProps) => {
+export const DialogueFrame = ({ flags }: DialogueProps) => {
   const [character, setCharacter] = useState(characterTypeSample);
-  const [dialogue, setDialogue] = useState(dialogueTextDic.sample1);
+  const [dialogue, setDialogue] = useState<DialogueEntry[]>([]);
   const [isManipulated, setIsManipulated] = useState(false);
-
   const [isvisible, setisvisible] = useState(false);
   const [islastdialogue, setislastdialogue] = useState(false);
-
   const [displayedText, setDisplayedText] = useState("");
   const [textIndex, setTextIndex] = useState(0);
+  const [currentChoices, setCurrentChoices] = useState<Choice[]>([]);
 
-  //Dialogue内容設定用のuseEffect
-  //TODO:更新のタイミングがflags変更時でOKなのかの確認
   useEffect(() => {
     setDialogue(getCurrentText(flags));
   }, [flags]);
@@ -148,8 +181,9 @@ export const  DialogueFrame = ({flags} : DialogueProps) => {
       setCharacter(dialogue[0].expression);
       setisvisible(true);
       setislastdialogue(false);
-      setDisplayedText(""); // テキストリセット
-      setTextIndex(0); // インデックスリセット
+      setDisplayedText("");
+      setTextIndex(0);
+      setCurrentChoices(dialogue[0].choices || []);
     } else {
       isManipulated
         ? setCharacter(characterTypeSample_Manipulated)
@@ -164,59 +198,54 @@ export const  DialogueFrame = ({flags} : DialogueProps) => {
       const timer = setTimeout(() => {
         setDisplayedText((prev) => prev + dialogue[0].text[textIndex]);
         setTextIndex((prev) => prev + 1);
-      }, 50); // 表示速度調整（ミリ秒）
+      }, 50);
       return () => clearTimeout(timer);
     }
   }, [dialogue, textIndex]);
 
-
-  window.connect = () => {
-    setDialogue(dialogueTextDic.sample2);
-    setIsManipulated(true);
-    window.reset = () => {
-      setDialogue(dialogueTextDic.sample1);
-      setIsManipulated(false);
-    };
-  
-  };
-  window.openHatch = () => {
-    setDialogue(dialogueTextDic.sample3);
-  };
-  window.disconnect = () => {
-    setDialogue(dialogueTextDic.sample4);
-    setIsManipulated(false);
-  };
-
   const handleClick = () => {
-    if (dialogue.length > 0) {
+    if (dialogue.length > 0 && currentChoices.length === 0) {
       const tempDialogue = [...dialogue];
       tempDialogue.shift();
       setDialogue(tempDialogue);
     }
   };
 
-  return (
-    <Container onClick={handleClick}>
-      <CharacterImage character={character} />
+  const handleChoiceClick = (choice: Choice) => {
+    setDialogue(dialogueTextDic[choice.nextDialogue]);
+  };
 
-      {dialogue.length > 0 && dialogue[0].text === "" ? (
-        <></>
-      ) : isManipulated ? (
-        dialogue.length > 0 && (
-          <ManipulatedDialogueBox>
-            <DisplayedText text={displayedText} />
-          </ManipulatedDialogueBox>
-        )
-      ) : (
-        <DialogueBox
-          $isvisible={isvisible}
-          $islastdialogue={islastdialogue}
-          onClick={handleClick}
-        >
-          {dialogue.length > 0 && <DisplayedText text={displayedText} />}
-        </DialogueBox>
+  return (
+    <Container onClick={currentChoices.length > 0 ? undefined : handleClick}>
+      <CharacterImage character={character} />
+      {currentChoices.length <= 0 &&
+        (dialogue.length > 0 && dialogue[0].text === "" ? (
+          <></>
+        ) : isManipulated ? (
+          dialogue.length > 0 && (
+            <ManipulatedDialogueBox>
+              <DisplayedText text={displayedText} />
+            </ManipulatedDialogueBox>
+          )
+        ) : (
+          <DialogueBox
+            $isvisible={isvisible}
+            $islastdialogue={islastdialogue}
+            onClick={handleClick}
+          >
+            {dialogue.length > 0 && <DisplayedText text={displayedText} />}
+          </DialogueBox>
+        ))}
+
+      {currentChoices.length > 0 && (
+        <ChoiceContainer>
+          {currentChoices.map((choice, index) => (
+            <ChoiceButton key={index} onClick={() => handleChoiceClick(choice)}>
+              {choice.text}
+            </ChoiceButton>
+          ))}
+        </ChoiceContainer>
       )}
     </Container>
   );
 };
-

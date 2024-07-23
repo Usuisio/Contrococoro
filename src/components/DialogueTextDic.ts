@@ -3,6 +3,21 @@ import { characterImageType } from "./CharacterImage";
 import { flagKeyValueDic, getFlagByName } from "./FlagControllContainer";
 
 
+export type Choice = {
+  text: string;
+  nextDialogue: string;
+}
+
+export type DialogueEntry = {
+  text: string;
+  expression: characterImageType;
+  choices?: Choice[];
+}
+
+export type DialogueTextDic = {
+  [key: string]: DialogueEntry[];
+}
+
 export const getCurrentText = (flags: flagKeyValueDic) => {
 
     let currentText = dialogueTextDic["sample1"];
@@ -67,9 +82,21 @@ const characterTypeSample: characterImageType = {
   };
   
 
-export const dialogueTextDic = {
+export const dialogueTextDic: DialogueTextDic = {
     "sample1": [
         { text: "", expression: characterTypeSample },
+        {
+            text: "こんにちは！\n今日もメンテナンスお願いしま……",
+            expression: characterTypeSample,
+        },
+        {
+          text: "",
+          expression: characterTypeSample,
+          choices: [
+            { text: "外に出る", nextDialogue: "goOutside" },
+            { text: "家にいる", nextDialogue: "sample4" }
+          ]
+        },
         {
             text: "こんにちは！\n今日もメンテナンスお願いしま……",
             expression: characterTypeSample,
