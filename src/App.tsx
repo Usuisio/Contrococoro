@@ -13,7 +13,7 @@ function App() {
         <meta charSet="UTF-8" />
         <meta name="description" content={t("description")} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/jpeg" href="/path/to/icon.jpg" />
+        <link rel="icon" type="image/jpeg" href="/images/icon.jpg" />
       </Helmet>
       <GameView />
     </>
