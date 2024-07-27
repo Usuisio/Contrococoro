@@ -6,9 +6,9 @@ import "./index.css";
 import "./i18n.ts";
 import { BrowserRouter } from "react-router-dom";
 
-if ((window as any).__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object") {
-  (window as any).__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () {};
-}
+// if ((window as any).__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object") {
+//   (window as any).__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () {};
+// }
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
