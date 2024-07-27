@@ -481,7 +481,7 @@ DELETE(COMMAND)
   background-size: cover; /* 追加 */
   background-repeat: no-repeat; /* 繰り返しを無効化 */
   background-position: center; /* 中央に配置 */
-`,fT=()=>T.jsx(T.Fragment,{children:T.jsx(cT,{children:T.jsx(uT,{})})});function dT(){const{t:e}=Iw();return T.jsxs(T.Fragment,{children:[T.jsxs(vw,{children:[T.jsx("title",{children:e("title")}),T.jsx("meta",{charSet:"UTF-8"}),T.jsx("meta",{name:"description",content:e("description")}),T.jsx("meta",{name:"viewport",content:"width=device-width, initial-scale=1.0"}),T.jsx("link",{rel:"icon",type:"image/jpeg",href:"/path/to/icon.jpg"})]}),T.jsx(fT,{})]})}/**
+`,fT=()=>T.jsx(T.Fragment,{children:T.jsx(cT,{children:T.jsx(uT,{})})});function dT(){const{t:e}=Iw();return T.jsxs(T.Fragment,{children:[T.jsxs(vw,{children:[T.jsx("title",{children:e("title")}),T.jsx("meta",{charSet:"UTF-8"}),T.jsx("meta",{name:"description",content:e("description")}),T.jsx("meta",{name:"viewport",content:"width=device-width, initial-scale=1.0"}),T.jsx("link",{rel:"icon",type:"image/jpeg",href:"/images/icon.jpg"})]}),T.jsx(fT,{})]})}/**
  * @remix-run/router v1.18.0
  *
  * Copyright (c) Remix Software Inc.
