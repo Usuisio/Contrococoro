@@ -7,12 +7,23 @@ i18n
     resources: {
       en: {
         translation: {
+          metaDescription: "Text-based adventure game where you maintain a robot, 'Repair the Cocoro'.",
           welcome: "Welcome to React and i18next",
           title: "Repair the cocoro",
           sample1: "Amazing! It's the first time a human technician is doing maintenance for me!",
           sample2: "Currently in maintenance mode. If you want to interrupt, please use the console.",
           sample3: "Opening the abdominal hatch.",
           sample4: "Um... My stomach is still open...",
+
+          textA_1: "Hello! I'm here for maintenance today...",
+          textA_2: "Are you... a human?",
+          textA_3: "Amazing! It's the first time a human technician is doing maintenance for me!",
+
+          choiceB: "Please tell me about yourself.",
+
+          textB_1: "I'm Rocoro! My formal model is roc-o-4902!",
+          textB_2: "I'm in my 8th year of operation, and my role is a childcare robot.",
+          textB_3: "There are no notable defects or omissions during manufacturing or operation.",
 
 
 
@@ -36,6 +47,7 @@ i18n
       },
       ja: {
         translation: {
+          metaDescription: "ロボットを操作しながらメンテナンスするテキストベースのアドベンチャーゲーム、『リペア・ザ・ココロ』。",
           welcome: "Reactとi18nextへようこそ",
           title: "リペア・ザ・ココロ",
           sample1: "すっごーい！\nニンゲンの技師さんにメンテナンスしてもらうの初めて！",
@@ -50,7 +62,7 @@ i18n
           
           choiceB: "あなたのことを教えてください。",
 
-          textB_1: "私はロコロ！　正式型式はloc-o-4902です！",
+          textB_1: "私はロコロ！　正式型式はroc-o-4902です！",
           textB_2: "製造8年目で、役割は子守ロボット。",
           textB_3: "製造時・運用時共に特筆すべき欠陥・欠落はないよ。",
 
@@ -238,7 +250,7 @@ i18n
           textP_3: "92%完了……",
           textP_4: "99%完了………………",
 
-          textP_5: "はじめまして！私は子守ロボット、loc-o-4902です。\nまずは私の名前を設定してください！",
+          textP_5: "はじめまして！私は子守ロボット、roc-o-4902です。\nまずは私の名前を設定してください！",
 
           textArm_1: "腕部パーツを取り外します。",
           textArm_2: "……腕なんて外して、どうするのさ。\n使わないなら、元に戻してよ？",
@@ -275,7 +287,7 @@ i18n
       }
     },
     lng: "ja", // 初期言語
-    fallbackLng: "ja", // デフォルトの言語
+    fallbackLng: "en", // デフォルトの言語
     interpolation: {
       escapeValue: false // Reactはデフォルトでエスケープを行うため、ここではfalseに設定
     }

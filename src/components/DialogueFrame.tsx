@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import i18n from "../i18n";
 import styled, { css, keyframes } from "styled-components";
 import CharacterImage, { characterImageType } from "./CharacterImage";
 import {
@@ -208,9 +209,10 @@ export const DialogueFrame = ({ flags }: DialogueProps) => {
   }, [dialogue]);
 
   useEffect(() => {
-    if (dialogue.length > 0 && textIndex < dialogue[0].text.length) {
+    const translatedText = i18n.t(dialogue[0]?.text);
+    if (dialogue.length > 0 && textIndex < translatedText.length) {
       const timer = setTimeout(() => {
-        setDisplayedText((prev) => prev + dialogue[0].text[textIndex]);
+        setDisplayedText((prev) => prev + translatedText[textIndex]);
         setTextIndex((prev) => prev + 1);
       }, 40);
       return () => clearTimeout(timer);
@@ -244,7 +246,7 @@ export const DialogueFrame = ({ flags }: DialogueProps) => {
         <CharacterImage character={character} />
       )}
       {currentChoices.length <= 0 &&
-        (dialogue.length > 0 && dialogue[0].text === "" ? (
+        (dialogue.length > 0 && i18n.t(dialogue[0]?.text) === "" ? (
           <></>
         ) : isManipulated ? (
           dialogue.length > 0 && (
@@ -266,7 +268,7 @@ export const DialogueFrame = ({ flags }: DialogueProps) => {
         <ChoiceContainer>
           {currentChoices.map((choice, index) => (
             <ChoiceButton key={index} onClick={() => handleChoiceClick(choice)}>
-              {choice.text}
+              {i18n.t(choice.text)}
             </ChoiceButton>
           ))}
         </ChoiceContainer>

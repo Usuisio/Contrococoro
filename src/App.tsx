@@ -1,41 +1,28 @@
 import { Helmet } from "react-helmet-async";
 import "./App.css";
-import { GameView } from "./components/GameView";
-import { Navigate, Route, Routes, useNavigate, useParams } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import { LanguageWrapper } from "./components/LanguageWrapper";
 
 function App() {
-  const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
-  const { lang } = useParams();
-
-
-  const changeLanguage = (lng:string) => {
-    navigate(`/${lng}`);
-
-    if (lng && i18n.language !== lng) {
-      i18n.changeLanguage(lng);
-    }
-  };
+  const { t } = useTranslation();
+  const location = useLocation();
 
   return (
     <>
-      <button onClick={() => changeLanguage('en')}>English</button>
-      <button onClick={() => changeLanguage('ja')}>日本語</button>
       <Helmet>
-        <html lang={lang} />
         <title>{t("title")}</title>
         <meta charSet="UTF-8" />
-        <meta name="description" content="これは日本語のReactページです。" />
+        <meta name="description" content={t("description")} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Helmet>
-    <Routes>
-      <Route path="/:lang" element={<GameView />} />
-      <Route path="*" element={<Navigate to="/ja" replace />} />
-    </Routes>
+      <Routes>
+        <Route path="/repaircocoro" element={<Navigate to="/repaircocoro/ja" replace />} />
+        <Route path="/repaircocoro/:lang" element={<LanguageWrapper />} />
+        <Route path="*" element={<Navigate to="/repaircocoro/ja" replace />} />
+      </Routes>
     </>
   );
 }
 
 export default App;
-
