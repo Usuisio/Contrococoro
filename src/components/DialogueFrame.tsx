@@ -100,10 +100,6 @@ const ManipulatedDialogueBox = styled.div`
   z-index: 10;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transform: translateX(-50%);
-  &::before {
-    content: "警告";
-    color: yellow;
-  }
 `;
 
 const growAnimation = keyframes`
