@@ -1,8 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import "./App.css";
-import { Navigate, Route, Routes } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import { LanguageWrapper } from "./components/LanguageWrapper";
+import { GameView } from "./components/GameView";
 
 function App() {
   const { t } = useTranslation();
@@ -14,12 +13,9 @@ function App() {
         <meta charSet="UTF-8" />
         <meta name="description" content={t("description")} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/jpeg" href="/path/to/icon.jpg" />
       </Helmet>
-      <Routes>
-        <Route path="/repaircocoro" element={<Navigate to="/repaircocoro/ja" replace />} />
-        <Route path="/repaircocoro/:lang" element={<LanguageWrapper />} />
-        <Route path="*" element={<Navigate to="/repaircocoro/ja" replace />} />
-      </Routes>
+      <GameView />
     </>
   );
 }

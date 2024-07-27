@@ -6,21 +6,23 @@ i18n
   .init({
     resources: {
       en: {
-        translation: { metaDescription: "A text-based adventure game where you maintain a robot while controlling it, titled 'Repair the Heart'.",
+        translation: { metaDescription: "A text-based adventure game where you maintain a robot while controlling it, titled 'Repair the Cocoro'.",
           welcome: "Welcome to React and i18next",
-          title: "Repair the Heart",
+          title: "Repair the Cocoro",
           sample1: "Wow!\nIt's my first time being maintained by a human engineer!",
           sample2: "Currently in maintenance mode.\nTo interrupt, please operate from the console.",
           sample3: "Opening the abdominal hatch.",
           sample4: "Um...\nMy stomach is still open, you know...?",
         
+          textA_0: "Could the next patient come in, please?",
+
           textA_1: "Hello!\nThank you for the maintenance today as well...",
           textA_2: "...Wait, are you a human?",
           textA_3: "Wow!\nIt's my first time being maintained by a human engineer!",
           
-          choiceB: "Please tell me about yourself.",
+          choiceB: "First, please tell me about yourself.",
         
-          textB_1: "I'm Rocoro! My official model number is roc-o-4902!",
+          textB_1: "I'm Cocoro! My official model number is roc-o-4902!",
           textB_2: "I'm in my 8th year of manufacture, and my role is a childcare robot.",
           textB_3: "There are no notable defects or shortcomings in my manufacturing or operation.",
         
@@ -118,7 +120,7 @@ i18n
           memory3_1: "Today, Chii gave me a present.\nShe said it was to celebrate one year since I came to this house.",
           memory3_2: "The present was a brand new battery.",
           memory3_3: "Chii said this to me:",
-          memory3_4: "To my beloved, beloved Rocoro.\nThank you for always playing with me!",
+          memory3_4: "To my beloved, beloved Cocoro.\nThank you for always playing with me!",
           memory3_5: "I'm giving you the battery you like.\nDon't ever take it off, and treasure it, okay?",
         
           memory_Finish: "That concludes the compressed memory data.",
@@ -162,7 +164,7 @@ i18n
           endingA_6: "Now I'm not a childcare robot anymore,\nbut Chii's home tutor robot.",
           endingA_7: "Doctor.",
           endingA_8: "I'm so happy that I met you and was able to come back to this house.",
-          endingA_9: "From Rocoro.",
+          endingA_9: "From Cocoro.",
           
           textN_0: "DELETE command executed.\nTarget: Order from previous owner 'Harumi Chii'.",
           choiceN_1: "I've deleted the order that was binding you.",
@@ -193,7 +195,7 @@ i18n
           endingB_7: "Doctor.",
           endingB_8: "I'll keep my memories of Chii safely stored in my memory, and I'll keep moving forward positively.",
           endingB_9: "After all, I'm a childcare robot!",
-          endingB_10: "From Rocoro.",
+          endingB_10: "From Cocoro.",
         
           textO_1: "Warning! A dangerous operation has been selected.",
           textO_2: "This operation will reset all parameters of this unit to factory settings.\nLost data cannot be restored.",
@@ -222,9 +224,9 @@ i18n
           cannotCommandError: "Error: Cannot execute due to insufficient permissions.",
           invalidArgsError: "Error: Invalid input command. Please enter the correct arguments.",
           cannotDeleteError: "Error: The DELETE command involves destructive changes! Its use is restricted in inappropriate situations.",
-          cannotDisturbError: "Error: This operation is no longer necessary for Rocoro.",
+          cannotDisturbError: "Error: This operation is no longer necessary for Cocoro.",
           cannotFindRobotError: "Error: The target robot was not found. Please register the robot.",
-          
+
           docs0_title: "Robot Operation Manual",
           docs0_desc: "Press F12 to open the console and enter the following commands:",
           docs1_title: "CHECK",
@@ -251,12 +253,13 @@ i18n
           sample3: "腹部ハッチを開放します。",
           sample4: "あの……\nお腹、開けっぱなしなんだけど……？",
 
+          textA_0: "次の方、どうぞお入りください。",
 
           textA_1: "こんにちは！\n今日もメンテナンスお願いしま……",
           textA_2: "……もしかして、あなた、ニンゲン？",
           textA_3: "すっごーい！\nニンゲンの技師さんにメンテナンスしてもらうの初めて！",
           
-          choiceB: "あなたのことを教えてください。",
+          choiceB: "まず、あなたのことを教えてください。",
 
           textB_1: "私はロコロ！　正式型式はroc-o-4902です！",
           textB_2: "製造8年目で、役割は子守ロボット。",
@@ -476,7 +479,7 @@ i18n
           docs4_title: "読み出す（LOAD）",
           docs4_desc: "LOAD(MEMORY1)\n　圧縮記憶データ1を読み出します。\nLOAD(MEMORY2)\n　圧縮記憶データ2を読み出します。\nLOAD(MEMORY3)\n　圧縮記憶データ3を読み出します。",
           docs5_title: "削除（DELETE）",
-          docs5_desc: "DELETE(RULE)\n　子守ロボットのルールを削除します。\nDELETE(COMMAND)\n　保持している命令を削除します。\nDELETE(ALL)\n　すべてのデータを削除します。",
+          docs5_desc: "DELETE(RULE)\n　子守ロボットのルールを削除します。\nDELETE(COMMAND)\n　保持している命令を削除します。",
           docs100_title: "うまくいかないときは？",
           docs100_desc: "CHECK()のようにすべて大文字で、最後にかっこをつけてください。\n迷ったら、このドキュメントの文字列をコピー&ペーストしてください。",
         }

@@ -102,6 +102,7 @@ export const getFlagByName = (
 
 export const FlagControllContainer = () => {
   //fがついているものが操作の即時実行、isがついているものが状態
+  const [isSetLanguage, setIsSetLanguage] = useState(false);
   const [isFirstTalkEnd, setIsFirstTalkEnd] = useState(false);
   const [fCheck, setFCheck] = useState(false);
   const [isCheckEnd, setIsCheckEnd] = useState(false);
@@ -138,6 +139,7 @@ export const FlagControllContainer = () => {
   const [showPhotoB, setShowPhotoB] = useState(false);
 
   const flags: flagKeyValueDic = [
+    { name: "isSetLanguage", flag: { value: isSetLanguage, setter: setIsSetLanguage } },
     {
       name: "isFirstTalkEnd",
       flag: { value: isFirstTalkEnd, setter: setIsFirstTalkEnd },

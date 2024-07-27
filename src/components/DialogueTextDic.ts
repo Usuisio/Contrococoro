@@ -1,3 +1,4 @@
+import i18n from '../i18n';
 import { characterImageType } from "./CharacterImage";
 import {
   flagKeyValueDic,
@@ -24,8 +25,11 @@ export type DialogueTextDic = {
 
 //fがついているものは即時実行なのでreturn
 export const getCurrentText = (flags: flagKeyValueDic) => {
-  let currentText = dialogueTextDic["導入"];
+  let currentText = dialogueTextDic["言語選択"];
 
+  if(getFlagByName(flags, "isSetLanguage")?.value) {
+    currentText = dialogueTextDic["導入_1"];
+  }
   if (getFlagByName(flags, "isFirstTalkEnd")?.value) {
     currentText = dialogueTextDic["悩み"];
   }
@@ -213,60 +217,80 @@ const cバッテリー交換: characterImageType = {
   f: "fsleep",
 };
 
-// const characterTypeSample: characterImageType = {
-//   b: "bo1",
-//   f: "f111",
-//   lh: "lh1",
-//   rh: "rh1",
-//   lf: "lf1",
-//   rf: "rf1",
-//   i: "none",
-// };
-
-// const characterTypeSample1: characterImageType = {
-//   f: "f111",
-// };
-
-// const characterTypeSample2: characterImageType = {
-//   f: "f114",
-//   i: "igreet",
-// };
-// const characterTypeSample3: characterImageType = {
-//   f: "f131",
-//   i: "iheart",
-// };
-// const characterTypeSample4: characterImageType = {
-//   f: "f311s",
-//   i: "iase",
-// };
-// const characterTypeSample_Manipulated: characterImageType = {
-//   f: "fmanipulated",
-//   i: "none",
-// };
-// const characterTypeSample_animation: characterImageType = {
-//   f: "manipulatedAnimation",
-//   i: "none",
-//   lh: "lh1",
-//   rh: "rh2",
-//   lf: "lf2",
-//   rf: "rf2",
-// };
-// const characterTypeSample_finishedAnimation: characterImageType = {
-//   f: "finishedAnimation",
-//   i: "none",
-// };
-// const f151s: characterImageType = {
-//   f: "f151s",
-//   i: "imoyamoya",
-// };
-
-// const characterTypeSample_hatchOpen: characterImageType = {
-//   b: "bo2",
-//   f: "fmani1",
-// };
+const changeLanguage = (lng: string) => {
+  i18n.changeLanguage(lng).then(() => {
+  });
+};
 
 export const dialogueTextDic: DialogueTextDic = {
-  導入: [
+  言語選択: [
+    {
+      text: "",
+      expression: {
+        f: "none",
+        b: "none",
+        i: "none",
+        lh: "none",
+        rh: "none",
+        lf: "none",
+        rf: "none",
+      },
+      choices: [
+        { text: "日本語", nextDialogue: "日本語" },
+        { text: "English", nextDialogue: "English" },
+      ],
+    },
+  ],
+  日本語: [
+    {
+      text: "日本語で遊びます。",
+      expression: {
+        f: "none",
+        i: "none",
+        lh: "none",
+        rh: "none",
+        lf: "none",
+        rf: "none",
+      },
+      flagAction: (flags) => {
+        changeLanguage('ja')
+        getFlagSetterByName(flags, "isSetLanguage")(true);
+      },
+    },
+  ],
+  English: [
+    {
+      text: "Let's play in English.",
+      expression: {
+        f: "none",
+        i: "none",
+        lh: "none",
+        rh: "none",
+        lf: "none",
+        rf: "none",
+      },
+      flagAction: (flags) => {changeLanguage('en')
+        getFlagSetterByName(flags, "isSetLanguage")(true);
+      },
+    },
+  ],
+  導入_1: [
+    {
+      text: "",
+      expression: {
+        f: "none",
+        i: "none",
+        lh: "none",
+        rh: "none",
+        lf: "none",
+        rf: "none",
+      },
+      choices: [
+        { text: "textA_0", nextDialogue: "導入_2" },
+      ],
+    },
+  ],
+  導入_2: [
     {
       text: "textA_1",
       expression: cすべてのパーツを通常状態に戻す,
@@ -516,9 +540,7 @@ export const dialogueTextDic: DialogueTextDic = {
     {
       text: "",
       expression: { f: "f154", i: "none" },
-      choices: [
-        { text: "choiceG", nextDialogue: "バッテリー交換拒否_2" },
-      ],
+      choices: [{ text: "choiceG", nextDialogue: "バッテリー交換拒否_2" }],
     },
   ],
   バッテリー交換拒否_2: [
@@ -982,11 +1004,14 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: "textM_5",
-      expression: { f: "f171", i: "iheart",
-  lh: "lh1",
-  rh: "rh1",
-  lf: "lf1",
-  rf: "rf1", },
+      expression: {
+        f: "f171",
+        i: "iheart",
+        lh: "lh1",
+        rh: "rh1",
+        lf: "lf1",
+        rf: "rf1",
+      },
     },
     {
       text: "",
@@ -1148,16 +1173,12 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: "textN_6",
-      expression: { f: "f175", i: "none",
-  lf: "lf1",
-  rf: "rf1", },
+      expression: { f: "f175", i: "none", lf: "lf1", rf: "rf1" },
     },
     {
       text: "",
       expression: { f: "f114", i: "none" },
-      choices: [
-        { text: "choiceN_6", nextDialogue: "バッテリー交換後_2" },
-      ],
+      choices: [{ text: "choiceN_6", nextDialogue: "バッテリー交換後_2" }],
     },
   ],
   バッテリー交換後_2: [
@@ -1168,9 +1189,7 @@ export const dialogueTextDic: DialogueTextDic = {
     {
       text: "",
       expression: { f: "f112", i: "none" },
-      choices: [
-        { text: "choiceN_7", nextDialogue: "バッテリー交換後_3" },
-      ],
+      choices: [{ text: "choiceN_7", nextDialogue: "バッテリー交換後_3" }],
     },
   ],
   バッテリー交換後_3: [
@@ -1339,4 +1358,3 @@ export const dialogueTextDic: DialogueTextDic = {
     },
   ],
 };
-
