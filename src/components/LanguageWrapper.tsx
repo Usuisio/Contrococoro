@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { GameView } from "./GameView";
 
 export function LanguageWrapper() {
-  const { t, i18n } = useTranslation();
+  const {i18n } = useTranslation();
   const navigate = useNavigate();
   const { lang } = useParams();
 

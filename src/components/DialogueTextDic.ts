@@ -1,4 +1,3 @@
-import i18n from "../i18n";
 import { characterImageType } from "./CharacterImage";
 import {
   flagKeyValueDic,

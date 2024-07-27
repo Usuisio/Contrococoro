@@ -1,12 +1,11 @@
 import { Helmet } from "react-helmet-async";
 import "./App.css";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { LanguageWrapper } from "./components/LanguageWrapper";
 
 function App() {
   const { t } = useTranslation();
-  const location = useLocation();
 
   return (
     <>
