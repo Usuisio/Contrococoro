@@ -7,7 +7,12 @@ import {
   dialogueTextDic,
   getCurrentText,
 } from "./DialogueTextDic";
-import { flagKeyValueDic, getFlagSetterByName, getFlagValueByName } from "./FlagControllContainer";
+import {
+  flagKeyValueDic,
+  getFlagSetterByName,
+  getFlagValueByName,
+} from "./FlagControllContainer";
+import PhotoImage from "./PhotoImage";
 
 const Container = styled.div`
   position: relative;
@@ -22,17 +27,20 @@ interface DialogueBoxProps {
   $islastdialogue: boolean;
 }
 
+const base_url = import.meta.env.BASE_URL;
+
 const DialogueBox = styled.div<DialogueBoxProps>`
   position: absolute;
   bottom: 32px;
   left: 50%;
   padding: 16px, 16px, 32px;
-  width: 80%;
+  width: 90%;
   height: 20%;
   min-width: 400px;
   min-height: 100px;
-  background-color: rgba(251, 251, 251, 0.9); /* 半透明の黒色背景 */
-  border: 4px solid #333;
+  background-image:  url("${base_url}images/talkDialog.png");
+  background-size: 100% 100%;
+  color: #e5e8ef;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,13 +64,14 @@ const DialogueBox = styled.div<DialogueBoxProps>`
 
 const DialogueTextStyle = styled.p`
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.6rem;
 `;
 
 const DisplayedText = ({ text }: { text: string }) => {
+  const addTriangleText = text + "\n▼"
   return (
     <DialogueTextStyle>
-      {text.split("\n").map((line, index) => (
+      {addTriangleText.split("\n").map((line, index) => (
         <span key={index}>
           {line}
           <br />
@@ -76,21 +85,25 @@ const ManipulatedDialogueBox = styled.div`
   position: absolute;
   bottom: 32px;
   left: 50%;
-  transform: translateX(-50%);
   padding: 16px, 16px, 32px;
-  width: 80%;
+  width: 90%;
   height: 20%;
   min-width: 400px;
   min-height: 100px;
-  background-color: rgba(71, 71, 83, 0.8); /* 半透明の黒色背景 */
-  color: #e5e8ef;
-  border: 4px solid #333;
+  background-image:  url("${base_url}images/talkDialog.png");
+  background-size: 100% 100%;
+  color: #02edbe;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 10;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateX(-50%);
+  &::before {
+    content: "警告";
+    color: yellow;
+  }
 `;
 
 const growAnimation = keyframes`
@@ -159,7 +172,9 @@ interface DialogueProps {
 
 export const DialogueFrame = ({ flags }: DialogueProps) => {
   const [character, setCharacter] = useState(characterTypeSample);
-  const [dialogue, setDialogue] = useState<DialogueEntry[]>(getCurrentText(flags));
+  const [dialogue, setDialogue] = useState<DialogueEntry[]>(
+    getCurrentText(flags)
+  );
   const [isManipulated, setIsManipulated] = useState(false);
   const [isvisible, setisvisible] = useState(false);
   const [islastdialogue, setislastdialogue] = useState(false);
@@ -168,10 +183,11 @@ export const DialogueFrame = ({ flags }: DialogueProps) => {
   const [currentChoices, setCurrentChoices] = useState<Choice[]>([]);
 
   useEffect(() => {
-    if(getFlagValueByName(flags, "NeedToForceChange")){
-    setDialogue(getCurrentText(flags));
-    getFlagSetterByName(flags, "NeedToForceChange")(false);
-  }}, [flags]);
+    if (getFlagValueByName(flags, "NeedToForceChange")) {
+      setDialogue(getCurrentText(flags));
+      getFlagSetterByName(flags, "NeedToForceChange")(false);
+    }
+  }, [flags]);
 
   useEffect(() => {
     if (dialogue.length > 0) {
@@ -184,12 +200,11 @@ export const DialogueFrame = ({ flags }: DialogueProps) => {
       setCurrentChoices(currentEntry.choices || []);
 
       setIsManipulated(currentEntry.isManipulated ?? false);
-   
+
       if (currentEntry.flagAction) {
         currentEntry.flagAction(flags);
       }
-
-    } else { 
+    } else {
       // setCharacter(characterTypeSample);
       setislastdialogue(true);
       setisvisible(false);
@@ -201,7 +216,7 @@ export const DialogueFrame = ({ flags }: DialogueProps) => {
       const timer = setTimeout(() => {
         setDisplayedText((prev) => prev + dialogue[0].text[textIndex]);
         setTextIndex((prev) => prev + 1);
-      }, 50);
+      }, 40);
       return () => clearTimeout(timer);
     }
   }, [dialogue, textIndex]);
@@ -211,8 +226,7 @@ export const DialogueFrame = ({ flags }: DialogueProps) => {
       const tempDialogue = [...dialogue];
       tempDialogue.shift();
       setDialogue(tempDialogue);
-    }
-    else{
+    } else {
       setDialogue(getCurrentText(flags));
     }
   };
@@ -221,9 +235,18 @@ export const DialogueFrame = ({ flags }: DialogueProps) => {
     setDialogue(dialogueTextDic[choice.nextDialogue]);
   };
 
+
+  const isShowPhoto =
+    getFlagValueByName(flags, "showPhotoA") ||
+    getFlagValueByName(flags, "showPhotoB");
+
   return (
     <Container onClick={currentChoices.length > 0 ? undefined : handleClick}>
-      <CharacterImage character={character} />
+      {isShowPhoto ? (
+        <PhotoImage photo={getFlagValueByName(flags, "showPhotoA") ? "photoA" : "photoB"} />
+      ) : (
+        <CharacterImage character={character} />
+      )}
       {currentChoices.length <= 0 &&
         (dialogue.length > 0 && dialogue[0].text === "" ? (
           <></>

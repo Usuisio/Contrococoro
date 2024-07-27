@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { flagKeyValueDic, getFlagSetterByName, getFlagValueByName } from './FlagControllContainer';
 import { DocumentAccordionLayer } from './DocumentAccordionLayer';
 
+
 const fadeToBlack = keyframes`
   from { opacity: 0; }
   to { opacity: 1; }
@@ -11,6 +12,17 @@ const fadeToBlack = keyframes`
 const fadeIn = keyframes`
   from { opacity: 1; }
   to { opacity: 0; }
+`;
+
+const TitleLogoImageDiv = styled.img`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 200;
+  animation: ${fadeToBlack} 2s ease-in;
 `;
 
 const Container = styled.div`
@@ -25,7 +37,7 @@ const BlackoutOverlay = styled.div<{ $isVisible: boolean, $isFadingToBlack: bool
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: black;
+  background-color: #16151a;
   opacity: ${props => props.$isVisible ? 1 : 0};
   animation: ${props => props.$isVisible 
     ? (props.$isFadingToBlack ? fadeToBlack : 'none') 
@@ -96,6 +108,8 @@ export const FadeInLayer: React.FC<FadeInLayerProps> = ({ flags }) => {
     }
   }, [flags]);
 
+  const base_url = import.meta.env.BASE_URL;
+
   return (
     <Container>
       <Content>
@@ -106,7 +120,7 @@ export const FadeInLayer: React.FC<FadeInLayerProps> = ({ flags }) => {
         $isFadingToBlack={isFadingToBlack} 
         onAnimationEnd={handleAnimationEnd}
       />
-      {showTitle && <div>リペア・ザ・ココロ</div>}
+      {showTitle && <TitleLogoImageDiv src={base_url + `images/titleLogo.png`}/>}
     </Container>
   );
 };

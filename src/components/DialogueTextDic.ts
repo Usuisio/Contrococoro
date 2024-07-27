@@ -345,6 +345,7 @@ export const dialogueTextDic: DialogueTextDic = {
     {
       text: i18n.t("textD_1"),
       expression: c操作開始,
+      isManipulated: true,
       flagAction: (flags) => {
         //テキスト表示をすっ飛ばして診断始めたプレイヤー対策
         getFlagSetterByName(flags, "isFirstTalkEnd")(true);
@@ -355,23 +356,28 @@ export const dialogueTextDic: DialogueTextDic = {
 
     {
       text: i18n.t("textD_2"),
+      isManipulated: true,
       expression: c操作中,
     },
 
     {
       text: i18n.t("textD_3"),
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: i18n.t("textD_4"),
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: i18n.t("textD_5"),
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: i18n.t("textD_6"),
+      isManipulated: true,
       expression: c操作中,
     },
     {
@@ -380,7 +386,7 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: i18n.t("textD_7"),
-      expression: {f: "f111", i: "igreet"},
+      expression: { f: "f111", i: "igreet" },
     },
     {
       text: "",
@@ -424,21 +430,28 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: i18n.t("textD_7_2"),
-      expression: {f: "f191", i: "none"},
+      expression: { f: "f191", i: "none" },
     },
   ],
   バッテリー交換: [
     {
       text: i18n.t("textE_1"),
-      expression: {f: "f175", i: "itameiki"},
+      expression: {
+        f: "f175",
+        i: "itameiki",
+        lh: "lh1",
+        rh: "rh1",
+        lf: "lf1",
+        rf: "rf1",
+      },
     },
     {
       text: i18n.t("textE_2"),
-      expression: {f: "f312", i: "none"},
+      expression: { f: "f312", i: "none" },
     },
     {
       text: i18n.t("textE_3"),
-      expression: {f: "f141", i: "none"},
+      expression: { f: "f141", i: "none" },
 
       flagAction: (flags) => {
         getFlagSetterByName(flags, "isCheckEnd")(true);
@@ -479,15 +492,22 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: i18n.t("textF_3"),
-      expression: {f: "f312", i: "ihatena"},
+      expression: {
+        f: "f312",
+        i: "ihatena",
+        lh: "lh1",
+        rh: "rh1",
+        lf: "lf1",
+        rf: "rf1",
+      },
     },
     {
       text: i18n.t("textF_4"),
-      expression: {f: "f151s", i: "none"},
+      expression: { f: "f151s", i: "none" },
     },
     {
       text: "",
-      expression: {f: "f154", i: "none"},
+      expression: { f: "f154", i: "none" },
       choices: [
         { text: i18n.t("choiceG"), nextDialogue: "バッテリー交換拒否_2" },
       ],
@@ -496,11 +516,11 @@ export const dialogueTextDic: DialogueTextDic = {
   バッテリー交換拒否_2: [
     {
       text: i18n.t("textG_1"),
-      expression: {f: "f315", i: "igreet"},
+      expression: { f: "f315", i: "igreet" },
     },
     {
       text: "",
-      expression: {f: "f114", i: "none"},
+      expression: { f: "f114", i: "none" },
       choices: [
         { text: i18n.t("choiceH_1"), nextDialogue: "バッテリー交換拒否_3" },
         { text: i18n.t("choiceH_2"), nextDialogue: "バッテリー交換拒否_3" },
@@ -510,54 +530,61 @@ export const dialogueTextDic: DialogueTextDic = {
   バッテリー交換拒否_3: [
     {
       text: i18n.t("textH_1"),
-      expression: {f: "f175", i: "iase"},
+      expression: { f: "f175", i: "iase" },
     },
     {
       text: i18n.t("textH_2"),
-      expression: {f: "f141", i: "none"},
+      expression: { f: "f141", i: "none" },
     },
     {
       text: i18n.t("textH_3"),
-      expression: {f: "f112", i: "none"},
+      expression: { f: "f112", i: "none" },
     },
     {
       text: "",
-      expression: {f: "f112", i: "none"},
+      expression: { f: "f112", i: "none" },
       choices: [{ text: i18n.t("choiceI"), nextDialogue: "記憶" }],
     },
   ],
   記憶: [
     {
       text: i18n.t("textI_1"),
-      expression: {f: "f111", i: "none"},
+      expression: {
+        f: "f111",
+        i: "none",
+        lh: "lh1",
+        rh: "rh2",
+        lf: "lf1",
+        rf: "rf1",
+      },
     },
     {
       text: i18n.t("textI_2"),
-      expression: {f: "f171"},
+      expression: { f: "f171" },
     },
     {
       text: i18n.t("textI_3"),
-      expression: {f: "f381", i: "none"},
+      expression: { f: "f381", i: "none" },
     },
     {
       text: i18n.t("textI_4"),
-      expression: {f: "f142", i: "none"},
+      expression: { f: "f142", i: "none" },
     },
     {
       text: i18n.t("textI_5"),
-      expression: {f: "f152", i: "ihatena"},
+      expression: { f: "f152", i: "ihatena" },
     },
     {
       text: i18n.t("textI_6"),
-      expression: {f: "f131", i: "iwaiwai"},
+      expression: { f: "f131", i: "iwaiwai" },
     },
     {
       text: i18n.t("textI_7"),
-      expression: {f: "f121", i: "igreet"},
+      expression: { f: "f121", i: "igreet" },
     },
     {
       text: i18n.t("textI_8"),
-      expression: {f: "f131", i: "none"},
+      expression: { f: "f131", i: "none" },
 
       flagAction: (flags) => {
         getFlagSetterByName(flags, "isAbleLoadMemory")(true);
@@ -667,35 +694,42 @@ export const dialogueTextDic: DialogueTextDic = {
   パスワードを忘れた: [
     {
       text: i18n.t("textJ_1"),
-      expression: {f: "f171", i: "iase"},
+      expression: {
+        f: "f171",
+        i: "iase",
+        lh: "lh1",
+        rh: "rh1",
+        lf: "lf1",
+        rf: "rf1",
+      },
     },
     {
       text: i18n.t("textJ_2"),
-      expression: {f: "f152", i: "iheart"},
+      expression: { f: "f152", i: "iheart" },
     },
     {
       text: i18n.t("textJ_3"),
-      expression: {f: "f111", i: "none"},
+      expression: { f: "f111", i: "none" },
     },
     {
       text: i18n.t("textJ_4"),
-      expression: {f: "f252", i: "none"},
+      expression: { f: "f252", i: "none" },
     },
     {
       text: i18n.t("textJ_5"),
-      expression: {f: "f194", i: "none"},
+      expression: { f: "f194", i: "none" },
     },
     {
       text: i18n.t("textJ_6"),
-      expression: {f: "f381", i: "iase"},
+      expression: { f: "f381", i: "iase" },
     },
     {
       text: i18n.t("textJ_7"),
-      expression: {f: "f111", i: "igreet"},
+      expression: { f: "f111", i: "igreet" },
     },
     {
       text: i18n.t("textJ_8"),
-      expression: {f: "f141", i: "iase"},
+      expression: { f: "f141", i: "iase" },
     },
   ],
   パスワードを見つける: [
@@ -712,35 +746,35 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: i18n.t("textK_1"),
-      expression: {f: "f351", i: "itameiki"},
+      expression: { f: "f351", i: "itameiki" },
     },
     {
       text: i18n.t("textK_2"),
-      expression: {f: "f315", i: "none"},
+      expression: { f: "f315", i: "none" },
     },
     {
       text: i18n.t("textK_3"),
-      expression: {f: "f194", i: "none"},
+      expression: { f: "f194", i: "none" },
     },
     {
       text: i18n.t("textK_4"),
-      expression: {f: "f141", i: "none"},
+      expression: { f: "f141", i: "none" },
     },
     {
       text: i18n.t("textK_5"),
-      expression: {f: "f152", i: "ihatena"},
+      expression: { f: "f152", i: "ihatena" },
     },
     {
       text: i18n.t("textK_6"),
-      expression: {f: "f151s", i: "iase"},
+      expression: { f: "f151s", i: "iase" },
     },
     {
       text: i18n.t("textK_7"),
-      expression: {f: "f145s", i: "iase"},
+      expression: { f: "f145s", i: "iase" },
     },
     {
       text: i18n.t("textK_8"),
-      expression: {f: "f151s", i: "none"},
+      expression: { f: "f151s", i: "none" },
     },
     {
       text: i18n.t("textK_9"),
@@ -795,55 +829,60 @@ export const dialogueTextDic: DialogueTextDic = {
   記憶を思い出した: [
     {
       text: i18n.t("textL_1"),
-      expression: {f: "f175", i: "isurprised"},
+      expression: {
+        f: "f175",
+        i: "isurprised",
+        lh: "lh1",
+        rh: "rh1",
+        lf: "lf1",
+        rf: "rf1",
+      },
     },
     {
       text: i18n.t("textL_2"),
-      expression: {f: "f171", i: "none"},
+      expression: { f: "f171", i: "none" },
     },
     {
       text: i18n.t("textL_3"),
-      expression: {f: "f111", i: "none"},
+      expression: { f: "f111", i: "none" },
     },
     {
       text: i18n.t("textL_4"),
-      expression: {f: "f112", i: "none"},
+      expression: { f: "f112", i: "none" },
     },
     {
       text: i18n.t("textL_5"),
-      expression: {f: "f141", i: "none"},
+      expression: { f: "f141", i: "none" },
     },
     {
       text: i18n.t("textL_6"),
-      expression: {f: "f381", i: "itameiki"},
+      expression: { f: "f381", i: "itameiki" },
     },
     {
       text: i18n.t("textL_7"),
-      expression: {f: "f381", i: "itameiki"},
+      expression: { f: "f381", i: "itameiki" },
     },
     {
       text: i18n.t("textL_8"),
-      expression: {f: "f343", i: "imoyamoya"},
+      expression: { f: "f343", i: "none" },
     },
     {
       text: i18n.t("textL_9"),
-      expression: {f: "f315", i: "none"},
+      expression: { f: "f315", i: "imoyamoya" },
     },
     {
       text: i18n.t("textL_10"),
-      expression: {f: "f383", i: "itameiki"},
+      expression: { f: "f383", i: "itameiki" },
     },
-    { text: i18n.t("textL_11"), 
-      expression: {f: "f175", i: "none"}, },
+    { text: i18n.t("textL_11"), expression: { f: "f175", i: "none" } },
     {
       text: i18n.t("textL_12"),
-      expression: {f: "f381", i: "none"},
+      expression: { f: "f381", i: "none" },
     },
-    { text: i18n.t("textL_13"), 
-      expression: {f: "f381", i: "none"}, },
+    { text: i18n.t("textL_13"), expression: { f: "f381", i: "none" } },
     {
       text: i18n.t("textL_14"),
-      expression: {f: "f315", i: "none"},
+      expression: { f: "f315", i: "none" },
       flagAction: (flags) => {
         getFlagSetterByName(flags, "isEnableDelete")(true);
       },
@@ -865,31 +904,31 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: "",
-      expression: {f: "f114", i: "none"},
+      expression: { f: "f114", i: "none" },
       choices: [{ text: i18n.t("choiceM_1"), nextDialogue: "ルール削除_2" }],
     },
   ],
   ルール削除_2: [
     {
       text: i18n.t("textM_1"),
-      expression: {f: "f115", i: "igreet"},
+      expression: { f: "f115", i: "igreet" },
     },
 
     {
       text: "",
-      expression: {f: "f115", i: "none"},
+      expression: { f: "f115", i: "none" },
       choices: [{ text: i18n.t("choiceM_2"), nextDialogue: "ルール削除_3" }],
     },
   ],
   ルール削除_3: [
     {
       text: i18n.t("textM_2"),
-      expression: {f: "f191", i: "ihatena"},
+      expression: { f: "f191", i: "ihatena" },
     },
 
     {
       text: "",
-      expression: {f: "f191", i: "none"},
+      expression: { f: "f191", i: "none" },
       choices: [
         { text: i18n.t("choiceM_3"), nextDialogue: "ルール削除_4" },
         { text: i18n.t("choiceM_4"), nextDialogue: "ルール削除_4" },
@@ -899,30 +938,34 @@ export const dialogueTextDic: DialogueTextDic = {
   ルール削除_4: [
     {
       text: i18n.t("textM_3"),
-      expression: {f: "f111", i: "none"},
+      expression: { f: "f111", i: "none" },
     },
     {
       text: i18n.t("textM_4"),
-      expression: {f: "f141", i: "none"},
+      expression: { f: "f141", i: "none" },
     },
     {
       text: i18n.t("textM_5"),
-      expression: {f: "f171", i: "iheart"},
+      expression: { f: "f171", i: "iheart",
+  lh: "lh1",
+  rh: "rh1",
+  lf: "lf1",
+  rf: "rf1", },
     },
     {
       text: "",
-      expression: {f: "f171", i: "none"},
+      expression: { f: "f171", i: "none" },
       choices: [{ text: i18n.t("choiceM_5"), nextDialogue: "ルール削除_5" }],
     },
   ],
   ルール削除_5: [
     {
       text: i18n.t("textM_6"),
-      expression: {f: "f132", i: "igreet"},
+      expression: { f: "f132", i: "igreet" },
     },
     {
       text: i18n.t("textM_7"),
-      expression: {f: "f111", i: "iwaiwai"},
+      expression: { f: "f111", i: "iwaiwai" },
     },
 
     {
@@ -1003,29 +1046,29 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: "",
-      expression: {f: "f114", i: "none"},
+      expression: { f: "f114", i: "none" },
       choices: [{ text: i18n.t("choiceN_1"), nextDialogue: "命令削除_2" }],
     },
   ],
   命令削除_2: [
     {
       text: i18n.t("textN_1"),
-      expression: {f: "f115", i: "igreet"},
+      expression: { f: "f115", i: "igreet" },
     },
     {
       text: "",
-      expression: {f: "f115", i: "none"},
+      expression: { f: "f115", i: "none" },
       choices: [{ text: i18n.t("choiceN_2"), nextDialogue: "命令削除_3" }],
     },
   ],
   命令削除_3: [
     {
       text: i18n.t("textN_2"),
-      expression: {f: "f191", i: "ihatena"},
+      expression: { f: "f191", i: "ihatena" },
     },
     {
       text: "",
-      expression: {f: "f191", i: "none"},
+      expression: { f: "f191", i: "none" },
       choices: [
         { text: i18n.t("choiceN_3"), nextDialogue: "命令削除_4" },
         { text: i18n.t("choiceN_4"), nextDialogue: "命令削除_4" },
@@ -1035,18 +1078,18 @@ export const dialogueTextDic: DialogueTextDic = {
   命令削除_4: [
     {
       text: i18n.t("textN_4"),
-      expression: {f: "f111", i: "none"},
+      expression: { f: "f111", i: "none" },
     },
     {
       text: i18n.t("textN_5"),
-      expression: {f: "f131", i: "igreet"},
+      expression: { f: "f131", i: "igreet" },
     },
   ],
 
   バッテリー交換中: [
     {
       text: i18n.t("textN_wait"),
-      expression: {f: "f142", i: "none"},
+      expression: { f: "f142", i: "none" },
       flagAction: (flags) => {
         getFlagSetterByName(flags, "fRemoveBattery")(false);
         getFlagSetterByName(flags, "blackOut")(true);
@@ -1066,11 +1109,13 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: i18n.t("textN_6"),
-      expression: {f: "f175", i: "ihatena"},
+      expression: { f: "f175", i: "none",
+  lf: "lf1",
+  rf: "rf1", },
     },
     {
       text: "",
-      expression: {f: "f114", i: "none"},
+      expression: { f: "f114", i: "none" },
       choices: [
         { text: i18n.t("choiceN_6"), nextDialogue: "バッテリー交換後_2" },
       ],
@@ -1079,11 +1124,11 @@ export const dialogueTextDic: DialogueTextDic = {
   バッテリー交換後_2: [
     {
       text: i18n.t("textN_7"),
-      expression: {f: "f141", i: "itameiki"},
+      expression: { f: "f141", i: "itameiki" },
     },
     {
       text: "",
-      expression: {f: "f112", i: "none"},
+      expression: { f: "f112", i: "none" },
       choices: [
         { text: i18n.t("choiceN_7"), nextDialogue: "バッテリー交換後_3" },
       ],
@@ -1092,11 +1137,11 @@ export const dialogueTextDic: DialogueTextDic = {
   バッテリー交換後_3: [
     {
       text: i18n.t("textN_8"),
-      expression: {f: "f132", i: "igreet"},
+      expression: { f: "f132", i: "igreet" },
     },
     {
       text: i18n.t("textN_9"),
-      expression: {f: "f111", i: "iwaiwai"},
+      expression: { f: "f111", i: "iwaiwai" },
     },
     {
       text: "",
