@@ -219,6 +219,7 @@ const cバッテリー交換: characterImageType = {
 
 const changeLanguage = (lng: string) => {
   i18n.changeLanguage(lng).then(() => {
+    console.log(i18n);
   });
 };
 
@@ -238,6 +239,7 @@ export const dialogueTextDic: DialogueTextDic = {
       choices: [
         { text: "日本語", nextDialogue: "日本語" },
         { text: "English", nextDialogue: "English" },
+        { text: "한국어", nextDialogue: "한국어" },
       ],
     },
   ],
@@ -253,7 +255,7 @@ export const dialogueTextDic: DialogueTextDic = {
         rf: "none",
       },
       flagAction: (flags) => {
-        changeLanguage('ja')
+        changeLanguage('ja');
         getFlagSetterByName(flags, "isSetLanguage")(true);
       },
     },
@@ -269,7 +271,25 @@ export const dialogueTextDic: DialogueTextDic = {
         lf: "none",
         rf: "none",
       },
-      flagAction: (flags) => {changeLanguage('en')
+      flagAction: (flags) => {
+        changeLanguage('en');
+        getFlagSetterByName(flags, "isSetLanguage")(true);
+      },
+    },
+  ],
+  한국어:[
+    {
+      text: "한국어로 놀아봅시다.",
+      expression: {
+        f: "none",
+        i: "none",
+        lh: "none",
+        rh: "none",
+        lf: "none",
+        rf: "none",
+      },
+      flagAction: (flags) => {
+        changeLanguage('ko');
         getFlagSetterByName(flags, "isSetLanguage")(true);
       },
     },
