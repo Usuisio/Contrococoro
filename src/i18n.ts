@@ -22,7 +22,7 @@ i18n
           
           choiceB: "First, please tell me about yourself.",
         
-          textB_1: "I'm Cocoro! My official model number is roc-o-4902!",
+          textB_1: "I'm Cocoro! My official model number is coc-o-4902!",
           textB_2: "I'm in my 8th year of manufacture, and my role is a childcare robot.",
           textB_3: "There are no notable defects or shortcomings in my manufacturing or operation.",
         
@@ -208,7 +208,7 @@ i18n
           textP_3: "92% complete...",
           textP_4: "99% complete......",
         
-          textP_5: "Nice to meet you! I'm the childcare robot, roc-o-4902.\nFirst, please set my name!",
+          textP_5: "Nice to meet you! I'm the childcare robot, coc-o-4902.\nFirst, please set my name!",
         
           textArm_1: "Removing arm parts.",
           textArm_2: "...What are you going to do with my arm?\nIf you're not using it, put it back, okay?",
