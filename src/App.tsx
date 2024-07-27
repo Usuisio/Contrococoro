@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 import "./App.css";
 import { GameView } from "./components/GameView";
 import { Navigate, Route, Routes, useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 
 function App() {

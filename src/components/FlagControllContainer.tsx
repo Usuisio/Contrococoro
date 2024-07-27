@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { DialogueFrame } from "./DialogueFrame";
+import { useEffect, useState } from "react";
 import { t } from "i18next";
-import { DocumentAccordionLayer } from "./DocumentAccordionLayer";
 import { FadeInLayer } from "./FadeInLayer";
 
 declare global {

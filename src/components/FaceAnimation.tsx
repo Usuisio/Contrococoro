@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const CharacterImageDiv = styled.img`

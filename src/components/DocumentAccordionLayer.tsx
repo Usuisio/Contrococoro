@@ -10,7 +10,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import styled from "styled-components";
 import {
   flagKeyValueDic,
-  FlagNames,
   getFlagValueByName,
 } from "./FlagControllContainer";
 import { DialogueFrame } from "./DialogueFrame";
@@ -151,11 +150,6 @@ export const DocumentAccordionLayer = ({ flags }: DialogueProps) => {
       isVisible: () => getFlagValueCore("isFirstTalkEnd"),
     },
   ];
-
-  const getFlagValue = (flagName: FlagNames): boolean => {
-    const flag = flags.find((f) => f.name === flagName);
-    return flag ? flag.flag.value : false;
-  };
 
   return (
     <Container>
