@@ -333,7 +333,7 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: "textC_6",
-      expression: { f: "f312", i: "ihatena" },
+      expression: { f: "f312", i: "none" },
 
       flagAction: (flags) => {
         getFlagSetterByName(flags, "isFirstTalkEnd")(true);
@@ -396,6 +396,7 @@ export const dialogueTextDic: DialogueTextDic = {
   自己診断_2回目以降: [
     {
       text: "textD_1",
+      isManipulated: true,
       expression: c操作開始,
       flagAction: (flags) => {
         getFlagSetterByName(flags, "fCheck")(false);
@@ -404,27 +405,33 @@ export const dialogueTextDic: DialogueTextDic = {
 
     {
       text: "textD_2",
+      isManipulated: true,
       expression: c操作中,
     },
 
     {
       text: "textD_3",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "textD_4",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "textD_5",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "textD_6",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "",
+      isManipulated: true,
       expression: c操作終了,
     },
     {
@@ -480,6 +487,7 @@ export const dialogueTextDic: DialogueTextDic = {
   バッテリー交換拒否: [
     {
       text: "textF_2",
+      isManipulated: true,
       expression: c操作中,
       flagAction: (flags) => {
         getFlagSetterByName(flags, "fRemoveBatteryRejected")(false);
@@ -487,6 +495,7 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: "",
+      isManipulated: true,
       expression: c操作終了,
     },
     {
@@ -593,6 +602,7 @@ export const dialogueTextDic: DialogueTextDic = {
   メモリー1: [
     {
       text: "memory1_Start",
+      isManipulated: true,
       expression: c操作開始,
       flagAction: (flags) => {
         getFlagSetterByName(flags, "fLoadMemory1")(false);
@@ -600,28 +610,34 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: "memory1_1",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "memory1_2",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "memory1_3",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "memory_Finish",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "",
+      isManipulated: true,
       expression: c操作終了,
     },
   ],
   メモリー2: [
     {
       text: "memory2_Start",
+      isManipulated: true,
       expression: c操作開始,
       flagAction: (flags) => {
         getFlagSetterByName(flags, "fLoadMemory2")(false);
@@ -629,28 +645,34 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: "memory2_1",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "memory2_2",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "memory2_3",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "memory_Finish",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "",
+      isManipulated: true,
       expression: c操作終了,
     },
   ],
   メモリー3: [
     {
       text: "memory3_Start",
+      isManipulated: true,
       expression: c操作開始,
 
       flagAction: (flags) => {
@@ -659,30 +681,37 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: "memory3_1",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "memory3_2",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "memory3_3",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "memory3_4",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "memory3_5",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "memory_Finish",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "",
+      isManipulated: true,
       expression: c操作終了,
       flagAction: (flags) => {
         getFlagSetterByName(flags, "isRemindMemory")(true);
@@ -734,6 +763,7 @@ export const dialogueTextDic: DialogueTextDic = {
   パスワードを見つける: [
     {
       text: "textArm_1",
+      isManipulated: true,
       expression: c操作開始_腕を外す,
       flagAction: (flags) => {
         getFlagSetterByName(flags, "fRemoveArms")(false);
@@ -741,6 +771,7 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: "",
+      isManipulated: true,
       expression: c操作終了,
     },
     {
@@ -784,6 +815,7 @@ export const dialogueTextDic: DialogueTextDic = {
   腕を外す: [
     {
       text: "textArm_1",
+      isManipulated: true,
       expression: c操作開始_腕を外す,
       flagAction: (flags) => {
         getFlagSetterByName(flags, "fRemoveArms")(false);
@@ -791,6 +823,7 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: "",
+      isManipulated: true,
       expression: c操作終了,
     },
     {
@@ -806,6 +839,7 @@ export const dialogueTextDic: DialogueTextDic = {
   脚を外す: [
     {
       text: "textLeg_1",
+      isManipulated: true,
       expression: c操作開始_脚を外す,
       flagAction: (flags) => {
         getFlagSetterByName(flags, "fRemoveLegs")(false);
@@ -813,6 +847,7 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: "",
+      isManipulated: true,
       expression: c操作終了,
     },
     {
@@ -891,6 +926,7 @@ export const dialogueTextDic: DialogueTextDic = {
   ルール削除: [
     {
       text: "textM_0",
+      isManipulated: true,
       expression: c操作開始,
 
       flagAction: (flags) => {
@@ -899,6 +935,7 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: "",
+      isManipulated: true,
       expression: c操作終了,
     },
     {
@@ -970,6 +1007,7 @@ export const dialogueTextDic: DialogueTextDic = {
     {
       text: "",
       expression: c普通の顔,
+      isManipulated: true,
       flagAction: (flags) => {
         getFlagSetterByName(flags, "blackOut")(true);
       },
@@ -1034,6 +1072,7 @@ export const dialogueTextDic: DialogueTextDic = {
   命令削除: [
     {
       text: "textN_0",
+      isManipulated: true,
       expression: c操作開始,
       flagAction: (flags) => {
         getFlagSetterByName(flags, "fDeleteCommand")(false);
@@ -1041,6 +1080,7 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: "",
+      isManipulated: true,
       expression: c操作終了,
     },
     {
@@ -1144,6 +1184,7 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: "",
+      isManipulated: true,
       expression: cすべてのパーツを通常状態に戻す,
       flagAction: (flags) => {
         getFlagSetterByName(flags, "blackOut")(true);
@@ -1212,6 +1253,7 @@ export const dialogueTextDic: DialogueTextDic = {
   全削除: [
     {
       text: "textO_1",
+      isManipulated: true,
       expression: c操作開始,
       flagAction: (flags) => {
         getFlagSetterByName(flags, "fDeleteAll")(false);
@@ -1219,15 +1261,18 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: "textO_2",
-      expression: cすべてのパーツを通常状態に戻す,
+      isManipulated: true,
+      expression: c操作中,
     },
     {
       text: "textO_3",
-      expression: cすべてのパーツを通常状態に戻す,
+      isManipulated: true,
+      expression: c操作中,
     },
     {
       text: "",
-      expression: cすべてのパーツを通常状態に戻す,
+      isManipulated: true,
+      expression: c操作中,
       choices: [
         { text: "choiceO_1", nextDialogue: "エンディングC" },
         { text: "choiceO_2", nextDialogue: "キャンセル" },
@@ -1237,12 +1282,14 @@ export const dialogueTextDic: DialogueTextDic = {
   キャンセル: [
     {
       text: "",
+      isManipulated: true,
       expression: c操作終了,
     },
   ],
   エンディングC: [
     {
       text: "textP_1",
+      isManipulated: true,
       expression: c操作中,
 
       flagAction: (flags) => {
@@ -1251,18 +1298,22 @@ export const dialogueTextDic: DialogueTextDic = {
     },
     {
       text: "textP_2",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "textP_3",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "textP_4",
+      isManipulated: true,
       expression: c操作中,
     },
     {
       text: "",
+      isManipulated: true,
       expression: c操作終了,
     },
     {

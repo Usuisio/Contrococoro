@@ -144,14 +144,16 @@ const ChoiceContainer = styled.div`
 `;
 
 const ChoiceButton = styled.button`
-  background-color: rgba(251, 251, 251, 0.9);
+  background-color: rgba(251, 251, 251, 0.957);
   border: 2px solid #333;
-  padding: 12px 24px;
-  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgb(0, 0, 0);
+  padding: 12px 32px;
+  font-size: 1.4rem;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.1s;
+  background-size: 100% 100%;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
 
   &:hover {
     background-color: rgba(200, 200, 200, 0.9);
@@ -214,7 +216,7 @@ export const DialogueFrame = ({ flags }: DialogueProps) => {
       const timer = setTimeout(() => {
         setDisplayedText((prev) => prev + translatedText[textIndex]);
         setTextIndex((prev) => prev + 1);
-      }, 40);
+      }, 30);
       return () => clearTimeout(timer);
     }
   }, [dialogue, textIndex]);

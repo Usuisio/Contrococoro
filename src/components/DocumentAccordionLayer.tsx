@@ -38,9 +38,9 @@ const AccordionContainer = styled.div`
   width: 330px;
   max-height: 70vh;
   overflow-y: auto;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.922);
   backdrop-filter: blur(5px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.571);
 `;
 
 const StyledAccordion = styled(Accordion)<{ $expandable: boolean }>`
@@ -51,7 +51,7 @@ const StyledAccordion = styled(Accordion)<{ $expandable: boolean }>`
       display: none;
     }
     &:not(:last-child) {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.454);
     }
   }
   &.Mui-disabled {
@@ -64,7 +64,7 @@ const StyledAccordionSummary = styled(AccordionSummary)<{
 }>`
   &.MuiAccordionSummary-root {
     background-color: ${(props) =>
-      props.$expandable ? "rgba(0, 0, 0, 0.03)" : "rgba(0, 0, 0, 0.08)"};
+      props.$expandable ? "rgba(0, 0, 0, 0.05)" : "rgba(0, 0, 0, 0.201)"};
     min-height: 48px;
     &.Mui-expanded {
       min-height: 48px;
@@ -77,7 +77,7 @@ const StyledAccordionSummary = styled(AccordionSummary)<{
     }
   }
   & .MuiTypography-root {
-    color: rgba(0, 0, 0, 0.87);
+    color: rgb(0, 0, 0);
     font-weight: ${(props) => (props.$expandable ? 500 : 600)};
   }
 `;
