@@ -19,14 +19,12 @@ declare global {
     REMOVEARMS: () => void;
     REMOVELEGS: () => void;
 
-    LOAD: () => void;
+    LOAD: (target: string) => void;
     LOADMEMORY: () => void;
     DELETE: (target: string) => void;
 
-
     //これはデバッグ用
     F: () => void;
-
 
     // グローバル変数の宣言（DELETE(rule)のような表記を許すため）
     battery: string;
@@ -34,6 +32,7 @@ declare global {
     legs: string;
     rule: string;
     command: string;
+    all: string;
     memory1: string;
     memory2: string;
     memory3: string;
@@ -42,10 +41,10 @@ declare global {
     LEGS: string;
     RULE: string;
     COMMAND: string;
+    ALL: string;
     MEMORY1: string;
     MEMORY2: string;
-    MEMORY3: string; 
-
+    MEMORY3: string;
   }
 }
 
@@ -54,6 +53,7 @@ window.arms = "arms";
 window.legs = "legs";
 window.rule = "rule";
 window.command = "command";
+window.all = "all";
 window.memory1 = "memory1";
 window.memory2 = "memory2";
 window.memory3 = "memory3";
@@ -62,11 +62,10 @@ window.ARMS = "arms";
 window.LEGS = "legs";
 window.RULE = "rule";
 window.COMMAND = "command";
+window.ALL = "all";
 window.MEMORY1 = "memory1";
 window.MEMORY2 = "memory2";
 window.MEMORY3 = "memory3";
-
-
 
 export type flag = {
   value: boolean;
@@ -104,7 +103,7 @@ export const getFlagByName = (
 };
 
 export const FlagControllContainer = () => {
-    //fがついているものが操作の即時実行、isがついているものが状態
+  //fがついているものが操作の即時実行、isがついているものが状態
   const [isFirstTalkEnd, setIsFirstTalkEnd] = useState(false);
   const [fCheck, setFCheck] = useState(false);
   const [isCheckEnd, setIsCheckEnd] = useState(false);
@@ -115,16 +114,30 @@ export const FlagControllContainer = () => {
   const [isAbleLoadMemory, setIsAbleLoadMemory] = useState(false);
   const [fRemoveArms, setFRemoveArms] = useState(false);
   const [fRemoveLegs, setFRemoveLegs] = useState(false);
-  const [fCheckMemoryRejected, setFCheckMemoryRejected] = useState(false);
+  const [fLoadMemory1, setFLoadMemory1] = useState(false);
+  const [fLoadMemory2, setFLoadMemory2] = useState(false);
+  const [fLoadMemory3, setFLoadMemory3] = useState(false);
   const [isLookingForPassword, setIsLookingForPassword] = useState(false);
-  const [fCheckMemory, setFCheckMemory] = useState(false);
+  const [isRemindMemory, setIsRemindMemory] = useState(false);
   const [isEnableDelete, setIsEnableDelete] = useState(false);
   const [fDeleteRule, setFDeleteRule] = useState(false);
   const [fDeleteCommand, setFDeleteCommand] = useState(false);
+  const [fDeleteAll, setFDeleteAll] = useState(false);
   const [isEnableRemoveBattery, setIsEnableRemoveBattery] = useState(false);
   const [fRemoveBattery, setFRemoveBattery] = useState(false);
+  const [finishReplaceBattery, setFinishReplaceBattery] = useState(false);
+
+  const [isEndingA, setIsEndingA] = useState(false);
+  const [isEndingB, setIsEndingB] = useState(false);
+  const [isEndingC, setIsEndingC] = useState(false);
 
   const [NeedToForceChange, setForceChange] = useState(false);
+
+  const [blackOut, setBlackOut] = useState(false);
+
+  const [showTitle, setShowTitle] = useState(false);
+  const [showPhotoA, setShowPhotoA] = useState(false);
+  const [showPhotoB, setShowPhotoB] = useState(false);
 
   const flags: flagKeyValueDic = [
     {
@@ -134,7 +147,10 @@ export const FlagControllContainer = () => {
     { name: "fCheck", flag: { value: fCheck, setter: setFCheck } },
     { name: "isCheckEnd", flag: { value: isCheckEnd, setter: setIsCheckEnd } },
     { name: "fOpenHatch", flag: { value: fOpenHatch, setter: setFOpenHatch } },
-    { name: "fCloseHatch", flag: { value: fCloseHatch, setter: setFCloseHatch } },
+    {
+      name: "fCloseHatch",
+      flag: { value: fCloseHatch, setter: setFCloseHatch },
+    },
     {
       name: "isOpenHatch",
       flag: { value: isOpenHatch, setter: setIsOpenHatch },
@@ -152,12 +168,6 @@ export const FlagControllContainer = () => {
         setter: setFRemoveBatteryRejected,
       },
     },
-
-    {
-      name: "fRemoveBattery",
-      flag: { value: fRemoveBattery, setter: setFRemoveBattery },
-    },
-
     {
       name: "isAbleLoadMemory",
       flag: { value: isAbleLoadMemory, setter: setIsAbleLoadMemory },
@@ -179,16 +189,26 @@ export const FlagControllContainer = () => {
       name: "isLookingForPassword",
       flag: { value: isLookingForPassword, setter: setIsLookingForPassword },
     },
-    
-    //ここから上使用中
-
     {
-      name: "fCheckMemoryRejected",
-      flag: { value: fCheckMemoryRejected, setter: setFCheckMemoryRejected },
+      name: "fLoadMemory1",
+      flag: { value: fLoadMemory1, setter: setFLoadMemory1 },
     },
     {
-      name: "fCheckMemory",
-      flag: { value: fCheckMemory, setter: setFCheckMemory },
+      name: "fLoadMemory2",
+      flag: { value: fLoadMemory2, setter: setFLoadMemory2 },
+    },
+    {
+      name: "fLoadMemory3",
+      flag: { value: fLoadMemory3, setter: setFLoadMemory3 },
+    },
+
+    {
+      name: "isRemindMemory",
+      flag: { value: isRemindMemory, setter: setIsRemindMemory },
+    },
+    {
+      name: "isEnableDelete",
+      flag: { value: isEnableDelete, setter: setIsEnableDelete },
     },
     {
       name: "fDeleteRule",
@@ -198,18 +218,56 @@ export const FlagControllContainer = () => {
       name: "fDeleteCommand",
       flag: { value: fDeleteCommand, setter: setFDeleteCommand },
     },
+
     {
-      name: "isEnableDelete",
-      flag: { value: isEnableDelete, setter: setIsEnableDelete },
+      name: "fRemoveBattery",
+      flag: { value: fRemoveBattery, setter: setFRemoveBattery },
+    },
+    {
+      name: "finishReplaceBattery",
+      flag: { value: finishReplaceBattery, setter: setFinishReplaceBattery },
+    },
+    {
+      name: "fDeleteAll",
+      flag: { value: fDeleteAll, setter: setFDeleteAll },
+    },
+    {
+      name: "isEndingA",
+      flag: { value: isEndingA, setter: setIsEndingA },
+    },
+    {
+      name: "isEndingB",
+      flag: { value: isEndingB, setter: setIsEndingB },
+    },
+
+    {
+      name: "isEndingC",
+      flag: { value: isEndingC, setter: setIsEndingC },
+    },
+    {
+      name: "blackOut",
+      flag: { value: blackOut, setter: setBlackOut },
+    },
+    {
+      name: "showTitle",
+      flag: { value: showTitle, setter: setShowTitle },
+    },
+    {
+      name: "showPhotoA",
+      flag: { value: showPhotoA, setter: setShowPhotoA },
+    },
+    {
+      name: "showPhotoB",
+      flag: { value: showPhotoB, setter: setShowPhotoB },
     },
   ];
 
   const getFlags = (key: string) => {
-    const found =  getFlagByName(flags, key);
-    if(found){
+    const found = getFlagByName(flags, key);
+    if (found) {
       return found.value;
     }
-  }
+  };
 
   const SetFlags = (key: string) => {
     const found = getFlagByName(flags, key);
@@ -224,17 +282,46 @@ export const FlagControllContainer = () => {
     }
   };
 
+  //エンディングBで、バッテリー交換前に使用禁止になるコマンドはこっち
+  const isEnding_BeforeBatteryReplacement = () => {
+    if (getFlags("isEndingA") || getFlags("isEndingB") || getFlags("isEnableRemoveBattery")) {
+      console.log(t("cannotDisturbError"));
+      return true;
+    }
+    if (getFlags("isEndingC")) {
+      console.log(t("cannotFindRobotError"));
+      return true;
+    }
+    return false;
+  };
 
-//これはデバッグ用
-window.F = () => {
-  console.log(flags);
-}
+  //エンディングBで、バッテリー交換後に使用禁止になるコマンドはこっち
+  const isEnding_AfterBatteryReplacement = () => {
+    if (getFlags("isEndingA") || getFlags("isEndingB")) {
+      console.log(t("cannotDisturbError"));
+      return true;
+    }
+    if (getFlags("isEndingC")) {
+      console.log(t("cannotFindRobotError"));
+      return true;
+    }
+    return false;
+  };
+
+  //これはデバッグ用
+  window.F = () => {
+    console.log(flags);
+    // SetFlags("blackOut");
+  };
 
   useEffect(() => {
     window.CHECK = () => {
       CHECKCore();
     };
     const CHECKCore = () => {
+      if (isEnding_BeforeBatteryReplacement()) {
+        return;
+      }
       SetFlags("fCheck");
       SetFlags("NeedToForceChange");
     };
@@ -243,6 +330,10 @@ window.F = () => {
       OPENHATCHCore();
     };
     const OPENHATCHCore = () => {
+      if (isEnding_AfterBatteryReplacement()) {
+        return;
+      }
+
       if (getFlags("isCheckEnd")) {
         if (getFlags("isOpenHatch")) {
           console.log(t("hatchAlreadyOpenedError"));
@@ -260,6 +351,9 @@ window.F = () => {
       CLOSEHATCHCore();
     };
     const CLOSEHATCHCore = () => {
+      if (isEnding_BeforeBatteryReplacement()) {
+        return;
+      }
       if (getFlags("isCheckEnd")) {
         if (getFlags("isOpenHatch")) {
           SetFlags("fCloseHatch");
@@ -276,6 +370,9 @@ window.F = () => {
       REMOVECore(target);
     };
     const REMOVECore = (target: any) => {
+      if (isEnding_AfterBatteryReplacement()) {
+        return;
+      }
       // targetを文字列に変換し、大文字化
       let targetStr = String(target).toUpperCase();
 
@@ -283,6 +380,7 @@ window.F = () => {
         if (targetStr === "BATTERY") {
           if (getFlags("isOpenHatch")) {
             if (getFlags("isEnableRemoveBattery")) {
+              SetFlags("isEnableRemoveBattery");
               SetFlags("fRemoveBattery");
               SetFlags("NeedToForceChange");
             } else {
@@ -306,23 +404,78 @@ window.F = () => {
       }
     };
 
+    window.LOAD = (target: any) => {
+      LOADCore(target);
+    };
+    const LOADCore = (target: any) => {
+      if (isEnding_BeforeBatteryReplacement()) {
+        return;
+      }
+      // targetを文字列に変換し、大文字化
+      let targetStr = String(target).toUpperCase();
+
+      if (getFlags("isAbleLoadMemory")) {
+        if (targetStr === "MEMORY1") {
+          SetFlags("fLoadMemory1");
+          SetFlags("NeedToForceChange");
+        } else if (targetStr === "MEMORY2") {
+          SetFlags("fLoadMemory2");
+          SetFlags("NeedToForceChange");
+        } else if (targetStr === "MEMORY3") {
+          SetFlags("isLookingForPassword");
+          requestPasswordForMemory3();
+        } else {
+          console.log(t("invalidArgsError"));
+        }
+      } else {
+        console.log(t("cannotCommandError"));
+      }
+    };
+
+    const requestPasswordForMemory3 = () => {
+      console.log(t("enterPassword"));
+      const password = prompt(t("pleaseEnterPassword"));
+      validatePasswordForMemory3(password);
+    };
+    const validatePasswordForMemory3 = (password: string | number | null) => {
+      const correctPassword = "4902";
+
+      if (String(password) === correctPassword) {
+        console.log(t("passwordCorrect"));
+        SetFlags("fLoadMemory3");
+        SetFlags("NeedToForceChange");
+      } else {
+        console.log(t("passwordIncorrect"));
+      }
+    };
+
     window.DELETE = (target: any) => {
       DELETECore(target);
     };
 
     const DELETECore = (target: any) => {
+      if (isEnding_BeforeBatteryReplacement()) {
+        return;
+      }
       // targetを文字列に変換し、大文字化
       let targetStr = String(target).toUpperCase();
 
       if (getFlags("isEnableDelete")) {
         if (targetStr === "RULE") {
-          console.log("rule deleted");
           SetFlags("fDeleteRule");
-        } else if (target === "command") {
+          SetFlags("isEndingA");
+          SetFlags("NeedToForceChange");
+        } else if (targetStr === "COMMAND") {
           SetFlags("fDeleteCommand");
+          SetFlags("isEnableRemoveBattery");
+          SetFlags("NeedToForceChange");
+          
+        } else if (targetStr === "ALL") {
+          SetFlags("fDeleteAll");
+          SetFlags("NeedToForceChange");
         }
       } else {
-        console.log(t("consoleDeleteError"));
+        console.log(t("cannotDeleteError"));
       }
     };
   }, [flags]);

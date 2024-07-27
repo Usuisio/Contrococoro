@@ -99,47 +99,47 @@ export const DocumentAccordionLayer = ({ flags }: DialogueProps) => {
       content:
       i18n.t("docs0_desc"),
       expandable: false,
-      isVisible: () => true, // 常に表示
+      isVisible: () => getFlagValueCore("isFirstTalkEnd"),
     },
     {
       id: 1,
       title: i18n.t("docs1_title"),
       content: i18n.t("docs1_desc"),
       expandable: true,
-      // isVisible: () => getFlagValueCore("isFirstTalkEnd"),
-      isVisible: () => true, // 常に表示
+      isVisible: () => getFlagValueCore("isFirstTalkEnd"),
+      // isVisible: () => true, // 常に表示
     },
     {
       id: 2,
       title: i18n.t("docs2_title"),
       content: i18n.t("docs2_desc"),
       expandable: true,
-      // isVisible: () => getFlagValueCore("isCheckEnd"),
-      isVisible: () => true, // 常に表示
+      isVisible: () => getFlagValueCore("isCheckEnd"),
+      // isVisible: () => true, // 常に表示
     },
     {
       id: 3,
       title: i18n.t("docs3_title"),
       content: i18n.t("docs3_desc"),
       expandable: true,
-      // isVisible: () => getFlagValueCore("isCheckEnd"),
-      isVisible: () => true, // 常に表示
+      isVisible: () => getFlagValueCore("isCheckEnd"),
+      // isVisible: () => true, // 常に表示
     },
     {
       id: 4,
       title: i18n.t("docs4_title"),
       content: i18n.t("docs4_desc"),
       expandable: true,
-      // isVisible: () => getFlagValueCore("isEnableDelete"),
-      isVisible: () => true, // 常に表示
+      isVisible: () => getFlagValueCore("isAbleLoadMemory"),
+      // isVisible: () => true, // 常に表示
     },
     {
       id: 5,
       title: i18n.t("docs5_title"),
       content: i18n.t("docs5_desc"),
       expandable: true,
-      // isVisible: () => getFlagValueCore("isEnableDelete"),
-      isVisible: () => true, // 常に表示
+      isVisible: () => getFlagValueCore("isEnableDelete"),
+      // isVisible: () => true, // 常に表示
     },
     
     {
@@ -148,7 +148,7 @@ export const DocumentAccordionLayer = ({ flags }: DialogueProps) => {
       content:
       i18n.t("docs100_desc"),
       expandable: false,
-      isVisible: () => true, // 常に表示
+      isVisible: () => getFlagValueCore("isFirstTalkEnd"),
     },
   ];
 
