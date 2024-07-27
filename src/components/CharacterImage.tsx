@@ -11,6 +11,15 @@ const CharacterImageDiv = styled.img`
   object-fit: contain;
   z-index: 0;
 `;
+const WholeCharacterImageDiv = styled.div`
+  position: absolute;
+  top: auto;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+`;
+
 
 const base_url = import.meta.env.BASE_URL;
 
@@ -101,7 +110,7 @@ export default function CharacterImage({
     }
   }, [character.i]);
   return (
-    <div>
+    <WholeCharacterImageDiv>
 
       {character.f === "manipulatedAnimation" ? (
         <FaceAnimation animationKey="start" />
@@ -141,6 +150,6 @@ export default function CharacterImage({
           alt={`キャラクター `}
         />
       )}
-    </div>
+    </WholeCharacterImageDiv>
   );
 }

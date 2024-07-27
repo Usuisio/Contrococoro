@@ -32,7 +32,7 @@ function App() {
       </Helmet>
     <Routes>
       <Route path="/:lang" element={<GameView />} />
-      <Route path="*" element={<Navigate to="/en" replace />} />
+      <Route path="*" element={<Navigate to="/ja" replace />} />
     </Routes>
     </>
   );

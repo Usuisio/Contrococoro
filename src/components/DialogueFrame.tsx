@@ -7,7 +7,7 @@ import {
   dialogueTextDic,
   getCurrentText,
 } from "./DialogueTextDic";
-import { flagKeyValueDic } from "./FlagControllContainer";
+import { flagKeyValueDic, getFlagSetterByName, getFlagValueByName } from "./FlagControllContainer";
 
 const Container = styled.div`
   position: relative;
@@ -120,11 +120,6 @@ const characterTypeSample: characterImageType = {
   i: "none",
 };
 
-const characterTypeSample_Manipulated: characterImageType = {
-  f: "fmanipulated",
-  i: "none",
-};
-
 const ChoiceContainer = styled.div`
   position: absolute;
   bottom: 64px;
@@ -164,7 +159,7 @@ interface DialogueProps {
 
 export const DialogueFrame = ({ flags }: DialogueProps) => {
   const [character, setCharacter] = useState(characterTypeSample);
-  const [dialogue, setDialogue] = useState<DialogueEntry[]>([]);
+  const [dialogue, setDialogue] = useState<DialogueEntry[]>(getCurrentText(flags));
   const [isManipulated, setIsManipulated] = useState(false);
   const [isvisible, setisvisible] = useState(false);
   const [islastdialogue, setislastdialogue] = useState(false);
@@ -173,25 +168,33 @@ export const DialogueFrame = ({ flags }: DialogueProps) => {
   const [currentChoices, setCurrentChoices] = useState<Choice[]>([]);
 
   useEffect(() => {
+    if(getFlagValueByName(flags, "NeedToForceChange")){
     setDialogue(getCurrentText(flags));
-  }, [flags]);
+    getFlagSetterByName(flags, "NeedToForceChange")(false);
+  }}, [flags]);
 
   useEffect(() => {
     if (dialogue.length > 0) {
-      setCharacter(dialogue[0].expression);
+      const currentEntry = dialogue[0];
+      setCharacter(currentEntry.expression);
       setisvisible(true);
       setislastdialogue(false);
       setDisplayedText("");
       setTextIndex(0);
-      setCurrentChoices(dialogue[0].choices || []);
-    } else {
-      isManipulated
-        ? setCharacter(characterTypeSample_Manipulated)
-        : setCharacter(characterTypeSample);
+      setCurrentChoices(currentEntry.choices || []);
+
+      setIsManipulated(currentEntry.isManipulated ?? false);
+   
+      if (currentEntry.flagAction) {
+        currentEntry.flagAction(flags);
+      }
+
+    } else { 
+      // setCharacter(characterTypeSample);
       setislastdialogue(true);
       setisvisible(false);
     }
-  }, [dialogue, isManipulated]);
+  }, [dialogue]);
 
   useEffect(() => {
     if (dialogue.length > 0 && textIndex < dialogue[0].text.length) {
@@ -208,6 +211,9 @@ export const DialogueFrame = ({ flags }: DialogueProps) => {
       const tempDialogue = [...dialogue];
       tempDialogue.shift();
       setDialogue(tempDialogue);
+    }
+    else{
+      setDialogue(getCurrentText(flags));
     }
   };
 

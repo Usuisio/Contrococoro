@@ -1,4 +1,5 @@
 import React from "react";
+import i18n from "../i18n";
 import {
   Accordion,
   AccordionSummary,
@@ -35,8 +36,8 @@ const AccordionContainer = styled.div`
   position: absolute;
   top: 1rem;
   left: 1rem;
-  width: 300px;
-  max-height: calc(100vh - 2rem);
+  width: 330px;
+  max-height: 70vh;
   overflow-y: auto;
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(5px);
@@ -90,46 +91,64 @@ export const DocumentAccordionLayer = ({ flags }: DialogueProps) => {
   const getFlagValueCore = (flagName: string): boolean => {
     return getFlagValueByName(flags, flagName);
   };
-  const isPhase1 =
-    getFlagValueCore("isFirstTalkEnd") && !getFlagValueCore("isEnableDelete");
 
   const accordionData: AccordionData[] = [
     {
       id: 0,
-      title: "ロボット操作マニュアル",
+      title: i18n.t("docs0_title"),
       content:
-        "F12キーでコンソールを開き、以下のコマンドを入力してください。\nすべて大文字で、()も含めて入力してください。",
+      i18n.t("docs0_desc"),
       expandable: false,
       isVisible: () => true, // 常に表示
     },
     {
       id: 1,
-      title: "診断（CHECK）",
-      content: "CHECK()：ロボットが自己診断プログラムを開始します。",
+      title: i18n.t("docs1_title"),
+      content: i18n.t("docs1_desc"),
       expandable: true,
-      isVisible: () => isPhase1,
-    },
-    {
-      id: 1,
-      title: "診断（CHECK）",
-      content:
-        "CHECK()：ロボットが自己診断プログラムを開始します。\nCHECK(MEMORY)：ロボットの記憶をクロールします。",
-      expandable: true,
-      isVisible: () => getFlagValueCore("isEnableDelete"),
+      // isVisible: () => getFlagValueCore("isFirstTalkEnd"),
+      isVisible: () => true, // 常に表示
     },
     {
       id: 2,
-      title: "取り外し（REMOVE）",
-      content: "REMOVE(ARM)：腕を取り外します。",
+      title: i18n.t("docs2_title"),
+      content: i18n.t("docs2_desc"),
       expandable: true,
-      isVisible: () => getFlagValueCore("isFirstTalkEnd"),
+      // isVisible: () => getFlagValueCore("isCheckEnd"),
+      isVisible: () => true, // 常に表示
     },
     {
       id: 3,
-      title: "削除（DELETE）",
-      content: "DELETE(RULE)：",
+      title: i18n.t("docs3_title"),
+      content: i18n.t("docs3_desc"),
       expandable: true,
-      isVisible: () => getFlagValueCore("isEnableDelete"),
+      // isVisible: () => getFlagValueCore("isCheckEnd"),
+      isVisible: () => true, // 常に表示
+    },
+    {
+      id: 4,
+      title: i18n.t("docs4_title"),
+      content: i18n.t("docs4_desc"),
+      expandable: true,
+      // isVisible: () => getFlagValueCore("isEnableDelete"),
+      isVisible: () => true, // 常に表示
+    },
+    {
+      id: 5,
+      title: i18n.t("docs5_title"),
+      content: i18n.t("docs5_desc"),
+      expandable: true,
+      // isVisible: () => getFlagValueCore("isEnableDelete"),
+      isVisible: () => true, // 常に表示
+    },
+    
+    {
+      id: 100,
+      title: i18n.t("docs100_title"),
+      content:
+      i18n.t("docs100_desc"),
+      expandable: false,
+      isVisible: () => true, // 常に表示
     },
   ];
 
@@ -140,7 +159,8 @@ export const DocumentAccordionLayer = ({ flags }: DialogueProps) => {
 
   return (
     <Container>
-      <DialogueFrame flags={flags} />
+      
+      <DialogueFrame flags={flags}/>
       <AccordionContainer>
         {accordionData.map(
           (item) =>
@@ -162,7 +182,14 @@ export const DocumentAccordionLayer = ({ flags }: DialogueProps) => {
                   <Typography>{item.title}</Typography>
                 </StyledAccordionSummary>
                 <AccordionDetails>
-                  <Typography>{item.content}</Typography>
+                  <Typography>
+                    {item.content.split("\n").map((line, index, array) => (
+                      <React.Fragment key={index}>
+                        {line}
+                        {index < array.length - 1 && <br />}
+                      </React.Fragment>
+                    ))}
+                  </Typography>
                 </AccordionDetails>
               </StyledAccordion>
             )
