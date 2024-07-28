@@ -219,7 +219,6 @@ const cバッテリー交換: characterImageType = {
 
 const changeLanguage = (lng: string) => {
   i18n.changeLanguage(lng).then(() => {
-    console.log(i18n);
   });
 };
 
