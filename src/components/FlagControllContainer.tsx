@@ -315,12 +315,6 @@ export const FlagControllContainer = () => {
     return false;
   };
 
-  //これはデバッグ用
-  window.F = () => {
-    console.log(flags);
-    // SetFlags("blackOut");
-  };
-
   useEffect(() => {
     window.CHECK = () => {
       CHECKCore();
