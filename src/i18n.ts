@@ -38,7 +38,7 @@ i18n
           textD_1: "Initiating diagnostic program.",
           textD_2: "To avoid the risk of malfunction,\nplease maintain a distance of 3 meters from this unit.",
           textD_3: "Scanning the status of the computational system.\n\n...Status: All green.",
-          textD_4: "Scanning the status of sensor system, sensory system, and feedback system.\n\n...Status: All green.",
+          textD_4: "Scanning the status of sensor and feedback system.\n\n...Status: All green.",
           textD_5: "Scanning the status of the drive system.\n\nWarning! Voltage level is below the acceptable range.",
           textD_6: "Error! Battery life has expired.\nBattery replacement is necessary.\nPlease open the hatch.",
         
@@ -277,7 +277,7 @@ i18n
           textD_1: "診断プログラムを起動します。",
           textD_2: "誤作動のリスクを回避するため、\nメンテナンス担当者は当機から半径3メートルの距離を保ってください。",
           textD_3: "演算システムのステータスをスキャン中です。\n\n……ステータス：オールグリーン。",
-          textD_4: "センサーシステム、感覚システム、フィードバックシステムのステータスをスキャン中です。\n\n……ステータス：オールグリーン。",
+          textD_4: "センサ、感覚フィードバックシステムのステータスをスキャン中です。\n\n……ステータス：オールグリーン。",
           textD_5: "駆動系システムのステータスをスキャン中です。\n\n警告！ 電圧レベルが許容範囲を下回っています。",
           textD_6: "エラー！ バッテリーの耐用期間が終了しています。\nバッテリー交換が必要です。\nハッチを開放してください。",
 
@@ -481,7 +481,7 @@ i18n
           docs5_title: "削除（DELETE）",
           docs5_desc: "DELETE(RULE)\n　子守ロボットのルールを削除します。\nDELETE(COMMAND)\n　保持している命令を削除します。",
           docs100_title: "うまくいかないときは？",
-          docs100_desc: "CHECK()のようにすべて大文字で、最後にかっこをつけてください。\n迷ったら、このドキュメントの文字列をコピー&ペーストしてください。",
+          docs100_desc: "CHECK()のようにすべて大文字で、最後に半角のかっこをつけてください。\n迷ったら、このドキュメントの文字列をコピー&ペーストしてください。",
         }
       },
       ko: {

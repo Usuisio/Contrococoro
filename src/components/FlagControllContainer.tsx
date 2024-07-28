@@ -139,7 +139,10 @@ export const FlagControllContainer = () => {
   const [showPhotoB, setShowPhotoB] = useState(false);
 
   const flags: flagKeyValueDic = [
-    { name: "isSetLanguage", flag: { value: isSetLanguage, setter: setIsSetLanguage } },
+    {
+      name: "isSetLanguage",
+      flag: { value: isSetLanguage, setter: setIsSetLanguage },
+    },
     {
       name: "isFirstTalkEnd",
       flag: { value: isFirstTalkEnd, setter: setIsFirstTalkEnd },
@@ -284,7 +287,11 @@ export const FlagControllContainer = () => {
 
   //エンディングBで、バッテリー交換前に使用禁止になるコマンドはこっち
   const isEnding_BeforeBatteryReplacement = () => {
-    if (getFlags("isEndingA") || getFlags("isEndingB") || getFlags("isEnableRemoveBattery")) {
+    if (
+      getFlags("isEndingA") ||
+      getFlags("isEndingB") ||
+      getFlags("isEnableRemoveBattery")
+    ) {
       console.log(t("cannotDisturbError"));
       return true;
     }
@@ -322,8 +329,12 @@ export const FlagControllContainer = () => {
       if (isEnding_BeforeBatteryReplacement()) {
         return;
       }
-      SetFlags("fCheck");
-      SetFlags("NeedToForceChange");
+      if (getFlags("isFirstTalkEnd")) {
+        SetFlags("fCheck");
+        SetFlags("NeedToForceChange");
+      } else {
+        console.log(t("cannotCommandError"));
+      }
     };
 
     window.OPENHATCH = () => {
@@ -469,7 +480,6 @@ export const FlagControllContainer = () => {
           SetFlags("fDeleteCommand");
           SetFlags("isEnableRemoveBattery");
           SetFlags("NeedToForceChange");
-          
         } else if (targetStr === "ALL") {
           SetFlags("fDeleteAll");
           SetFlags("NeedToForceChange");

@@ -510,6 +510,7 @@ export const dialogueTextDic: DialogueTextDic = {
   腹部ハッチ開放: [
     {
       text: "textF_1",
+      isManipulated: true,
       expression: cハッチ開放,
       flagAction: (flags) => {
         getFlagSetterByName(flags, "fOpenHatch")(false);
@@ -520,6 +521,7 @@ export const dialogueTextDic: DialogueTextDic = {
   腹部ハッチ閉鎖: [
     {
       text: "textF_1_a",
+      isManipulated: true,
       expression: cハッチ閉鎖,
       flagAction: (flags) => {
         getFlagSetterByName(flags, "fCloseHatch")(false);
