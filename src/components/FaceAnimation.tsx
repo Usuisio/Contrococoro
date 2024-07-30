@@ -12,18 +12,18 @@ const CharacterImageDiv = styled.img`
 `;
 const base_url = import.meta.env.BASE_URL;
 const start = [
-  `${base_url}images/fmani4.png`,
-  `${base_url}images/fmani3.png`,
-  `${base_url}images/fmani5.png`,
-  `${base_url}images/fmani2.png`,
-  `${base_url}images/fmani1.png`,
+  `${base_url}images/fmani4.webp`,
+  `${base_url}images/fmani3.webp`,
+  `${base_url}images/fmani5.webp`,
+  `${base_url}images/fmani2.webp`,
+  `${base_url}images/fmani1.webp`,
 ];
 
 const finish = [
-  `${base_url}images/fmanifin1.png`,
-  `${base_url}images/fmanifin2.png`,
-  `${base_url}images/fmanifin3.png`,
-  `${base_url}images/fmanifin4.png`,
+  `${base_url}images/fmanifin1.webp`,
+  `${base_url}images/fmanifin2.webp`,
+  `${base_url}images/fmanifin3.webp`,
+  `${base_url}images/fmanifin4.webp`,
 ];
 
 type key = "start" | "finish";

@@ -118,35 +118,35 @@ export default function CharacterImage({
         <FaceAnimation animationKey="finish" />
       ) : (
         <CharacterImageDiv
-          src={base_url + `images/${prevFace}.png`}
+          src={base_url + `images/${prevFace}.webp`}
           alt={`キャラクター `}
         />
       )}
       <CharacterImageDiv
-        src={base_url + `images/${prevRightHand}.png`}
+        src={base_url + `images/${prevRightHand}.webp`}
         alt={`キャラクター `}
       />
       <CharacterImageDiv
-        src={base_url + `images/${prevBody}.png`}
+        src={base_url + `images/${prevBody}.webp`}
         alt={`キャラクター`}
       />
 
       <CharacterImageDiv
-        src={base_url + `images/${prevRightFoot}.png`}
+        src={base_url + `images/${prevRightFoot}.webp`}
         alt={`キャラクター `}
       />
       <CharacterImageDiv
-        src={base_url + `images/${prevLeftFoot}.png`}
+        src={base_url + `images/${prevLeftFoot}.webp`}
         alt={`キャラクター `}
       />
       <CharacterImageDiv
-        src={base_url + `images/${prevLeftHand}.png`}
+        src={base_url + `images/${prevLeftHand}.webp`}
         alt={`キャラクター `}
       />
 
       {prevIcon === "none" ? <></>: (
         <CharacterImageDiv
-          src={base_url + `images/${prevIcon}.png`}
+          src={base_url + `images/${prevIcon}.webp`}
           alt={`キャラクター `}
         />
       )}

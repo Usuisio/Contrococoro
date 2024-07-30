@@ -39,7 +39,7 @@ const DialogueBox = styled.div<DialogueBoxProps>`
   height: 20%;
   min-width: 400px;
   min-height: 100px;
-  background-image:  url("${base_url}images/talkDialog.png");
+  background-image:  url("${base_url}images/talkDialog.webp");
   background-size: 100% 100%;
   color: #e5e8ef;
   display: flex;
@@ -91,7 +91,7 @@ const ManipulatedDialogueBox = styled.div`
   height: 20%;
   min-width: 400px;
   min-height: 100px;
-  background-image:  url("${base_url}images/talkDialog.png");
+  background-image:  url("${base_url}images/talkDialog.webp");
   background-size: 100% 100%;
   color: #02edbe;
   display: flex;

@@ -31,7 +31,7 @@ export default function PhotoImage({ photo }:PhotoImageProps) {
   return (
     <WholePhotoImageDiv>
       <PhotoImageDiv
-        src={base_url + `images/${photo}.png`}
+        src={base_url + `images/${photo}.webp`}
         alt={`写真 `}
       />
     </WholePhotoImageDiv>

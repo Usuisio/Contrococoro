@@ -120,7 +120,7 @@ export const FadeInLayer: React.FC<FadeInLayerProps> = ({ flags }) => {
         $isFadingToBlack={isFadingToBlack} 
         onAnimationEnd={handleAnimationEnd}
       />
-      {showTitle && <TitleLogoImageDiv src={base_url + `images/titleLogo.png`}/>}
+      {showTitle && <TitleLogoImageDiv src={base_url + `images/titleLogo.webp`}/>}
     </Container>
   );
 };
