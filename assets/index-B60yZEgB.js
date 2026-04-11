@@ -351,7 +351,7 @@ DELETE(COMMAND)
   width: 100%;
   height: 100%;
   object-fit: contain;
-`,zb="/repaircocoro/";function Bb({photo:e}){return T.jsx(Fb,{children:T.jsx(jb,{src:zb+`images/${e}.webp`,alt:"写真 "})})}const Hb=be.div`
+`,zb="/repaircocoro/";function Bb({photo:e}){const t=e==="photoA"?"PhotoA":"PhotoB";return T.jsx(Fb,{children:T.jsx(jb,{src:zb+`images/${t}.webp`,alt:"写真 "})})}const Hb=be.div`
   position: relative;
   min-width: 500px;
   min-height: 600px;
